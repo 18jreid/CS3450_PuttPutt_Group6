@@ -24,4 +24,9 @@ Installation Notes
 
 Testing
 ----------------------------------------------------
-- 
+- We will be using Python's standard library module unittest within our Django application.
+Unit tests are run from the command line using the manage.py file, and the test key word.
+Ex.
+$ ./manage.py test
+
+This runs all of the tests in the tests directory in our Django project. The python libraries makes creating tests and running them simple and non-complicated. 
