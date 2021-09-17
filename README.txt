@@ -33,8 +33,11 @@ Tool Stack
 
 Installation Notes
 ----------------------------------------------------
-- Django has built in functionality to run the server from the command line. To run the website, use the command "python manage.py runserver"
-- If you want to use a specific IP address, this will need to be specified in DjangoFramework/settings.py under the IP section of code. To use the specific IP, use the same command before but with the desired IP and port "python manage.py runserver 192.168.0.1:8080"
+- Django has built in functionality to run the server from the command line. To run the website, use the command 
+	$ python manage.py runserver
+
+- If you want to use a specific IP address, this will need to be specified in DjangoFramework/settings.py under the IP section of code. To use the specific IP, use the same command before but with the desired IP and port 
+	$ python manage.py runserver 192.168.0.1:8080
 ----------------------------------------------------
 
 
