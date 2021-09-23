@@ -6,4 +6,6 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('databaseDebugger', views.databaseDebugger, name="debugger"),
     path('testButtonFunction', views.testButtonFunction),
+    path('createUserPage', views.createUserPage),
+    path('createUser', views.createUser),
 ]

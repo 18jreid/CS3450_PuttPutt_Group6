@@ -20,8 +20,8 @@
     <div class="Debugger-Manager-Background">
         <div class="Debugger-Buttons-Container">
             <div>
-                <form action="/testButtonFunction">
-                    <button class="Debugger_Button">Click Me!</button>
+                <form action="/createUserPage">
+                    <button class="Create_User_Button">Create User</button>
                 </form>
             </div>
 
@@ -110,15 +110,25 @@
             </div>
 
             <div>
-                <form action="/testButtonFunction">
-                    <button class="Debugger_Button">Click Me!</button>
+                <form action="/admin">
+                    <button class="Debugger_Button" style="background-color: blue;">Admin Page</button>
                 </form>
             </div>
         </div>
     </div>
 
+    <h2 style="margin: 2em;">Create User:</h2>
     <p style="text-align: center; font-size: large; margin: 1em;">
-        Each of these buttons work by running the URL      ".../testButtonFunction"     (specified inside the /PuttPutt/urls.py), where it then executes the function     "testButtonFunction"     inside the views.py python file. It prints a message to the console, and reloads the same page.
+        Takes user to the temporary create user page, and creates a user in the database when submitted.
+        This can be verified through the webites /admin page.
+    </p>
+
+    <h2 style="margin: 2em;">Click Me:</h2>
+    <p style="text-align: center; font-size: large; margin: 1em;">
+        Each of these buttons work by running the URL ".../testButtonFunction"
+        (specified inside the /PuttPutt/urls.py), where it then executes the function
+        "testButtonFunction" inside the views.py python file. It prints a message to 
+        the console, and reloads the same page.
     </p>
 </body>
 </html>
