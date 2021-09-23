@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.Header-Grid-Container {
+    display: grid;
+    grid-template-columns: 100%;
+    background-color: crimson;
+}
+
+.Header-Grid-Container > div {
+    text-align: center;
+    font-size: xx-large;
+    margin: .75em;
+    color: white;
+}
+
+.Debugger-Manager-Background {
+    background-color: lightcoral;
+    margin: 2em;
+    border-radius: 8px;
+}
+
+.Debugger-Buttons-Container {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.Debugger-Buttons-Container > div {
+    margin: 1em;
+    text-align: center;
+}
+
+.Debugger_Button {
+    padding: 15px 32px;
+    background-color: white;
+    border-radius: 20px;
+    font-size: larger;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}

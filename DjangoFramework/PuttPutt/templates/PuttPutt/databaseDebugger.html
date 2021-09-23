@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Hello World!</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="{% static 'PuttPutt/databaseDebuggerStyle.css' %}">
+</head>
+<body>
+    <div class="Header-Grid-Container">
+        <div></div>
+        <div>
+            <h1>Database Debugger</h1>
+        </div>
+    </div>
+
+    <div class="Debugger-Manager-Background">
+        <div class="Debugger-Buttons-Container">
+            <div>
+                <form action="/testButtonFunction">
+                    <button class="Debugger_Button">Click Me!</button>
+                </form>
+            </div>
+
+            <div>
+                <form action="/testButtonFunction">
+                    <button class="Debugger_Button">Click Me!</button>
+                </form>
+            </div>
+
+            <div>
+                <form action="/testButtonFunction">
+                    <button class="Debugger_Button">Click Me!</button>
+                </form>
+            </div>
+
+            <div>
+                <form action="/testButtonFunction">
+                    <button class="Debugger_Button">Click Me!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <p style="text-align: center; font-size: large; margin: 1em;">
+        Each of these buttons work by running the URL      ".../testButtonFunction"     (specified inside the /PuttPutt/urls.py), where it then executes the function     "testButtonFunction"     inside the views.py python file. It prints a message to the console, and reloads the same page.
+    </p>
+</body>
+</html>
