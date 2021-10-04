@@ -32,10 +32,12 @@ def createUserPage(request):
 def createUser(request):
     user_name = request.GET['userName']
     password = request.GET['password']
+    user_id = request.GET['userID']
 
     user = User()
     user.user_name = user_name
     user.password = password
+    user.user_id = user_id
     user.save()
 
     return HttpResponse("""<html><script>window.location.replace('/databaseDebugger');</script></html>""")
