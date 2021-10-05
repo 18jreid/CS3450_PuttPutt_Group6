@@ -10,11 +10,6 @@ Project Managers:
 	- Jonathan Crandall
 	- Justin Reid
 
-Usage Notes
-----------------------------------------------------
-- We've been tasked the purpose of building a WebApp to manage PuttPutt tournaments, and beverage orders from players/sponsors/managers from a local bar. Sponsors are able to choose a date for which they want to host a tournament, and the managers will have access to all the funds and stats of the specific tournament. Players are able to sign up for a tournament and enter a score at the end of their game. All users are able to order drinks from the Beverage Ordering System, and will be delivered to their desired hole. We've chosen to use Django as our base framework, allowing the website to be easily hosted and tested.
-----------------------------------------------------
-
 
 Version-Control
 ----------------------------------------------------
@@ -29,7 +24,6 @@ Tool Stack
 - Asana
 ----------------------------------------------------
 
-----------------------------------------------------
 
 Installation Notes
 ----------------------------------------------------
@@ -38,10 +32,48 @@ Installation Notes
 
 - If you want to use a specific IP address, this will need to be specified in DjangoFramework/settings.py under the IP section of code. To use the specific IP, use the same command before but with the desired IP and port 
 	$ python manage.py runserver 192.168.0.1:8080
+--------------------------------------------------------------------------------------------------------
+
+
+Organization:
 ----------------------------------------------------
+	Code organization follows the general python and HTML standard programming guidelines. Using tabs, 
+machine-friendly for variables, all caps for constants, and capitalized class names.
+	Example:
+
+		class User(models.Model):
+		    user_id = models.CharField(max_length=14)
+
+		    PLAYER = 'PL'
+		    SPONSOR = 'SP'
+		    MANAGER = 'MA'
+		    DRINKMEISTER = 'DM'
+		    USER_TYPE_CHOICES = [
+			(PLAYER, 'Player'),
+			(SPONSOR, 'Sponsor'),
+			(MANAGER, 'Manager'),
+			(DRINKMEISTER, 'DrinkMeister'),
+		    ]
+		    user_type = models.CharField(
+			max_length = 2,
+			choices = USER_TYPE_CHOICES,
+			default = PLAYER
+		    )
+
+		    user_name = models.CharField(max_length=50)
+		    password = models.CharField(max_length=21)
+		    account_balance = models.FloatField(default=0)
 
 
-Testing
+Directory Map:
+	CS3450_PUTTPUTT_GROUP^/DjangoFramework - Base Project, contains all files pertaining to the django framework
+	CS3450_PUTTPUTT_GROUP^/DjangoFramework/PuttPutt - Contains all files pertaining to the webapp
+	CS3450_PUTTPUTT_GROUP^/DjangoFramework/PuttPutt/templates - Contains all HTML template files
+	CS3450_PUTTPUTT_GROUP^/DjangoFramework/PuttPutt/static - Contains all static files (.CSS, Resources, etc.)
+----------------------------------------------------		
+
+
+Testing:
 ----------------------------------------------------
 - We will be using Python's standard library module unittest within our Django application.
 Unit tests are run from the command line using the manage.py file, and the test key word.
@@ -50,3 +82,17 @@ $ ./manage.py test
 
 This runs all of the tests in the tests directory in our Django project. The python libraries makes creating tests and running them simple and non-complicated. 
 ----------------------------------------------------
+
+
+System Testing:
+--------------------------------------------------------------
+	Database Debugging:
+		We've included a page for database debugging to make sure we are creating instances of classes correctly.
+	To test classes, run the site with the extension /drinkDemo.
+
+		127.0.0.1/drinkDemo lists a few buttons where you can create instances of classes in the database. To make sure the
+	changes were made, go to the site /admin page.
+
+		127.0.0.1/admin page can be accessed ONLY by running the command 
+			python manage.py createsuperuser
+		and using your created user to sign in. 
