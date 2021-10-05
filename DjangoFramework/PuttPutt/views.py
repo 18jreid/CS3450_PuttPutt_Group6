@@ -1,4 +1,5 @@
 from PuttPutt.models import User
+from PuttPutt.models import Drink
 from django import http
 from django.http import HttpResponse
 from django.http.request import HttpRequest
@@ -27,6 +28,17 @@ def createUserPage(request):
 
     return render(request, "PuttPutt/createUser.html")
 
+### Takes user to create drink page
+def createDrinkPage(request):
+    print("\n\n Create a drink! \n\n")
+
+    return render(request, "PuttPutt/createDrink.html")
+
+### Takes user to drink demo
+def drinkDemo(request):
+    print("\n\n Drink Demo! \n\n")
+
+    return render(request, "PuttPutt/drinkDemo.html")
 
 ### Creates user from input from the create user page
 def createUser(request):
@@ -38,6 +50,21 @@ def createUser(request):
     user.user_name = user_name
     user.password = password
     user.user_id = user_id
+    user.account_balance = 500
     user.save()
 
-    return HttpResponse("""<html><script>window.location.replace('/databaseDebugger');</script></html>""")
+    return HttpResponse("""<html><script>window.location.replace('/drinkDemo');</script></html>""")
+
+### Creates drink from input from the create drink page
+def createDrink(request):
+    name = request.GET['name']
+    description = request.GET['description']
+    cost = request.GET['cost']
+
+    drink = Drink()
+    drink.name = name
+    drink.description = description
+    drink.cost = cost
+    drink.save()
+
+    return HttpResponse("""<html><script>window.location.replace('/drinkDemo');</script></html>""")

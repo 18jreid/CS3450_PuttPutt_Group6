@@ -51,7 +51,7 @@ class Calendar(models.Model):
     prize_pool = models.PositiveIntegerField()
     sponsor = models.CharField(max_length=50)
 
-class Drinks(models.Model):
+class Drink(models.Model):
     name = models.CharField(max_length=30)
     description = models.CharField(max_length=300)
     cost = models.FloatField(default=0)

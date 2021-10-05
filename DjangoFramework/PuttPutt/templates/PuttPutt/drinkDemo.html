@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Hello World!</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="{% static 'PuttPutt/databaseDebuggerStyle.css' %}">
+</head>
+<body>
+    <div class="Header-Grid-Container">
+        <div>
+            <h1>Drink Demo</h1>
+        </div>
+    </div>
+    <div class="Header-Grid-Container" style="background-color: #b31414;">
+        <div></div>
+    </div>
+
+    <div class="Debugger-Manager-Background">
+        <div class="Debugger-Buttons-Container">
+            <div>
+                <form action="/createUserPage">
+                    <button class="Create_User_Button">Create User</button>
+                </form>
+            </div>
+
+            <div>
+                <form action="/createDrinkPage">
+                    <button class="Debugger_Button">Create Drink</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
