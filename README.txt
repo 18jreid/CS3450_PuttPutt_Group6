@@ -66,10 +66,10 @@ machine-friendly for variables, all caps for constants, and capitalized class na
 
 
 Directory Map:
-	CS3450_PUTTPUTT_GROUP^/DjangoFramework - Base Project, contains all files pertaining to the django framework
-	CS3450_PUTTPUTT_GROUP^/DjangoFramework/PuttPutt - Contains all files pertaining to the webapp
-	CS3450_PUTTPUTT_GROUP^/DjangoFramework/PuttPutt/templates - Contains all HTML template files
-	CS3450_PUTTPUTT_GROUP^/DjangoFramework/PuttPutt/static - Contains all static files (.CSS, Resources, etc.)
+	CS3450_PUTTPUTT_GROUP6/DjangoFramework - Base Project, contains all files pertaining to the django framework
+	CS3450_PUTTPUTT_GROUP6/DjangoFramework/PuttPutt - Contains all files pertaining to the webapp
+	CS3450_PUTTPUTT_GROUP6/DjangoFramework/PuttPutt/templates - Contains all HTML template files
+	CS3450_PUTTPUTT_GROUP6/DjangoFramework/PuttPutt/static - Contains all static files (.CSS, Resources, etc.)
 ----------------------------------------------------		
 
 
