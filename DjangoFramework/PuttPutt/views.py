@@ -68,3 +68,9 @@ def createDrink(request):
     drink.save()
 
     return HttpResponse("""<html><script>window.location.replace('/drinkDemo');</script></html>""")
+
+### Takes user to player dashboard
+def playerDashboard(request):
+    print("\n\n Player Dashboard! \n\n")
+
+    return render(request, "PuttPutt/playerDashboard.html")

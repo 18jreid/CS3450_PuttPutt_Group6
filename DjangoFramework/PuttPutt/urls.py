@@ -11,4 +11,5 @@ urlpatterns = [
     path('createDrink', views.createDrink),
     path('createUserPage', views.createUserPage),
     path('createUser', views.createUser),
+    path('playerDashboard', views.playerDashboard),
 ]

@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.Header-Grid-Container {
+    display: grid;
+    grid-template-columns: 100%;
+    background-color: #7099ce;
+    text-shadow: -2px 3px #999;;
+}
+
+.Header-Grid-Container > div {
+    text-align: center;
+    font-size: xx-large;
+    margin: .75em;
+    color: white;
+}
+
+.Center-Box-Container {
+    height: 20em;
+    background-color:white;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    box-shadow: -2px 3px #999;
+    border-radius: 15px;
+    
+}
+
+.Left_Option {
+    background-color: #85e6ec;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    margin-left: -10%;
+    margin-right: 25%;    
+    text-align: center;
+    font-size: xx-large;
+}
+
+.Left_Option:hover {background-color: #4f878b;}
+
+.Right_Option {
+    background-color: #85e6ec;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    margin-left: 25%;
+    margin-right: -10%;    
+    text-align: center;
+    font-size: xx-large;
+}
+
+.Right_Option:hover {background-color: #4f878b;}
