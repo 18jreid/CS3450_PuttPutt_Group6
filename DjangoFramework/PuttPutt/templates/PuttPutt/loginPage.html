@@ -7,7 +7,8 @@
 <body>
 	<h1>User Sign In</h1>
 
-    <form action="/signInUser" method="GET">
+    <form action="/signInUser" method="POST">
+        {% csrf_token %}
         <label for="userName">User Name: </label>
         <input type="text" id="userID" name="userID"><br><br>
         <label for="password">Password:</label>

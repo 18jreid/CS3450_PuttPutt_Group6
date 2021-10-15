@@ -38,9 +38,9 @@ def drinkDemo(request):
 
 ### Creates user from input from the create user page
 def createUser(request):
-    user_name = request.GET['userName']
-    password = request.GET['password']
-    user_id = request.GET['userID']
+    user_name = request.POST['userName']
+    password = request.POST['password']
+    user_id = request.POST['userID']
 
     user = User()
     user.user_name = user_name
@@ -49,7 +49,7 @@ def createUser(request):
     user.account_balance = 500
     user.save()
 
-    return render(request, "Puttputt/loginPage.html")
+    return HttpResponse("""<html><script>window.location.replace('/loginPage');</script></html>""")
 
 ### Creates drink from input from the create drink page
 def createDrink(request):
@@ -85,11 +85,11 @@ def loginPage(request):
 
 ### Checks if user exists, and if their password is correct. If it is then they will go to the user dashboard
 def signInUser(request):
-    potentialUsers = User.objects.all().filter(user_id=request.GET['userID'])
+    potentialUsers = User.objects.all().filter(user_id=request.POST['userID'])
     if (len(potentialUsers) != 0):
-        user = User.objects.get(user_id=request.GET['userID'])
+        user = User.objects.get(user_id=request.POST['userID'])
 
-        if (user.password == request.GET['password']):
+        if (user.password == request.POST['password']):
             return render(request, "PuttPutt/playerDashboard.html")
         else:
             return HttpResponse("Incorrect Password")
