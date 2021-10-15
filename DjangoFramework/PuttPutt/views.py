@@ -5,22 +5,18 @@ from django.http import HttpResponse
 from django.http.request import HttpRequest
 from django.shortcuts import render
 
-
 # Create your views here.
 def index(request):
     return render(request, "PuttPutt/index.html")
 
-
 def databaseDebugger(request):
     return render(request, "PuttPutt/databaseDebugger.html")
-
 
 ### This just reloads the same page you're on, but executes the print function inside the terminal.
 def testButtonFunction(request):
     print("\n\nDebugger button pressed! This is where you will execute code for database debugging.\n\n")
 
     return HttpResponse("""<html><script>window.location.replace('/databaseDebugger');</script></html>""")
-
 
 ### Takes user to create user page
 def createUserPage(request):
@@ -74,3 +70,29 @@ def playerDashboard(request):
     print("\n\n Player Dashboard! \n\n")
 
     return render(request, "PuttPutt/playerDashboard.html")
+
+### Takes user to player dashboard
+def playerDashboard(request):
+    print("\n\n Player Dashboard! \n\n")
+
+    return render(request, "PuttPutt/playerDashboard.html")
+
+### Takes user to login page 
+def loginPage(request):
+    print("\n\n User Login page \n\n")
+
+    return render(request, "PuttPutt/loginPage.html")
+
+### Checks if user exists, and if their password is correct. If it is then they will go to the user dashboard
+def signInUser(request):
+    potentialUsers = User.objects.all().filter(user_id=request.GET['userID'])
+    if (len(potentialUsers) != 0):
+        user = User.objects.get(user_id=request.GET['userID'])
+
+        if (user.password == request.GET['password']):
+            return render(request, "PuttPutt/playerDashboard.html")
+        else:
+            return HttpResponse("Incorrect Password")
+
+    else:
+        return HttpResponse("User does not exist")

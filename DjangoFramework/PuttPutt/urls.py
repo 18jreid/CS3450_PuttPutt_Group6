@@ -3,7 +3,7 @@ from django.urls import path
 from PuttPutt import views
 
 urlpatterns = [
-    path('', views.index, name="index"),
+    path('', views.loginPage, name="login"),
     path('databaseDebugger', views.databaseDebugger, name="debugger"),
     path('drinkDemo', views.drinkDemo, name="drinkDemo"),
     path('testButtonFunction', views.testButtonFunction),
@@ -12,4 +12,6 @@ urlpatterns = [
     path('createUserPage', views.createUserPage),
     path('createUser', views.createUser),
     path('playerDashboard', views.playerDashboard),
+    path('loginPage', views.loginPage),
+    path('signInUser', views.signInUser),
 ]
