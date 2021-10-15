@@ -49,7 +49,7 @@ def createUser(request):
     user.account_balance = 500
     user.save()
 
-    return HttpResponse("""<html><script>window.location.replace('/drinkDemo');</script></html>""")
+    return render(request, "Puttputt/loginPage.html")
 
 ### Creates drink from input from the create drink page
 def createDrink(request):
