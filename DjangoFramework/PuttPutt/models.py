@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class User(models.Model):
     user_id = models.CharField(max_length=14)
@@ -24,6 +25,7 @@ class User(models.Model):
     password = models.CharField(max_length=21)
     account_balance = models.FloatField(default=0)
 
+
 class Tournament(models.Model):
     user_id = models.CharField(max_length=14)
     score_hole_1 = models.PositiveSmallIntegerField(default=0)
@@ -44,6 +46,8 @@ class Tournament(models.Model):
     score_hole_16 = models.PositiveSmallIntegerField(default=0)
     score_hole_17 = models.PositiveSmallIntegerField(default=0)
     score_hole_18 = models.PositiveSmallIntegerField(default=0)
+    date = models.DateField()
+
 
 class Calendar(models.Model):
     date = models.DateField()
@@ -51,10 +55,12 @@ class Calendar(models.Model):
     prize_pool = models.PositiveIntegerField()
     sponsor = models.CharField(max_length=50)
 
+
 class Drink(models.Model):
     name = models.CharField(max_length=30)
     description = models.CharField(max_length=300)
     cost = models.FloatField(default=0)
+
 
 class DrinkOrders(models.Model):
     user_id = models.CharField(max_length=12)

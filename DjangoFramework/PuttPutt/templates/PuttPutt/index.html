@@ -1,13 +1,44 @@
-{% load static %}
-
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
-<head>
-	<title>Hello World!</title>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="{% static 'PuttPutt/style.css' %}">
-</head>
-<body>
-	<h1 class="Temporary">Hello World!</h1>
-</body>
+    <head>
+        <title>Putt-Putt</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'PuttPutt/style.css' %}">
+    </head>
+
+    <body>
+        <div id="header">
+            <a href="{% url 'login' %}"><div id="loginButton">Login</div></a>
+        </div>
+        <div id="content">
+            <h1>Welcome to Putt-Putt!</h1>
+            <div>
+                <h2>Leaderboard</h2>
+                <p id="leaderboardDate">Wednesday, October 11th</p>
+                <div id="leaderboard">
+                    <table>
+                        <tr>
+                            <th>Player</th>
+                            <th>Score</th>
+                        </tr>
+                        <!-- Fill with player stats-->
+                        <tr><td>John Smith</td><td>10</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <h2>Upcoming Tournaments</h2>
+                <div id="upcomingTournaments">
+
+                    <!-- Fill with upcoming tournaments -->
+                    <div class="upcomingTournamentElement"><p>Friday, November 2nd at 9:00 am</p></div>
+                        {% block content %}
+                        {{ calendar }}
+                        {% endblock %}
+                </div>
+            </div>
+
+        </div>
+    </body>
 </html>

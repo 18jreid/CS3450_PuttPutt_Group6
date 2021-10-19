@@ -1,9 +1,9 @@
+from django.conf.urls import url
 from django.urls import path
-
 from PuttPutt import views
 
 urlpatterns = [
-    path('', views.loginPage, name="login"),
+    path('', views.index, name="index"),
     path('databaseDebugger', views.databaseDebugger, name="debugger"),
     path('drinkDemo', views.drinkDemo, name="drinkDemo"),
     path('testButtonFunction', views.testButtonFunction),
@@ -12,6 +12,7 @@ urlpatterns = [
     path('createUserPage', views.createUserPage),
     path('createUser', views.createUser),
     path('playerDashboard', views.playerDashboard),
-    path('loginPage', views.loginPage),
+    path('loginPage', views.loginPage, name="login"),
     path('signInUser', views.signInUser),
+    url(r'^calendar/$', views.CalendarView.as_view(), name='calendar'),
 ]
