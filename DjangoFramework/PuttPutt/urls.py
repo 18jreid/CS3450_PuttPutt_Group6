@@ -12,6 +12,7 @@ urlpatterns = [
     path('createUserPage', views.createUserPage),
     path('createUser', views.createUser),
     path('playerDashboard', views.playerDashboard),
+    path('drinkmeisterDashboard', views.drinkmeisterDashboard),
     path('loginPage', views.loginPage, name="login"),
     path('signInUser', views.signInUser),
     url(r'^calendar/$', views.CalendarView.as_view(), name='calendar'),

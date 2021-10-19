@@ -12,13 +12,13 @@
 
 .Header-Grid-Container > div {
     text-align: center;
-    font-size: xx-large;
+    font-size: x-large;
     margin: .75em;
     color: white;
 }
 
 .Center-Box-Container {
-    height: 20em;
+    height: auto;
     background-color:white;
     margin-left: 30%;
     margin-right: 30%;
@@ -43,6 +43,12 @@
 
 .Left_Option:hover {background-color: #4f878b;}
 
+.Left_Option:active {
+    background-color: #4f878b;
+    box-shadow: 0 -3px #b1e5e7;
+    transform: translateY(4px)
+}
+
 .Right_Option {
     background-color: #85e6ec;
     margin-top: 1em;
@@ -54,3 +60,9 @@
 }
 
 .Right_Option:hover {background-color: #4f878b;}
+
+.Right_Option:active {
+    background-color: #4f878b;
+    box-shadow: 0 -3px #b1e5e7;
+    transform: translateY(4px)
+}

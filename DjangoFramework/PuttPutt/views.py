@@ -85,13 +85,11 @@ def playerDashboard(request):
 
     return render(request, "PuttPutt/playerDashboard.html")
 
+### Takes user to drinkmeister dashboard
+def drinkmeisterDashboard(request):
+    print("\n\n Drinkmeister Dashboard! \n\n")
 
-### Takes user to player dashboard
-def playerDashboard(request):
-    print("\n\n Player Dashboard! \n\n")
-
-    return render(request, "PuttPutt/playerDashboard.html")
-
+    return render(request, "PuttPutt/drinkmeisterDashboard.html")
 
 ### Takes user to login page
 def loginPage(request):
