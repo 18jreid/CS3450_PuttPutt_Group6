@@ -91,6 +91,17 @@ def drinkmeisterDashboard(request):
 
     return render(request, "PuttPutt/drinkmeisterDashboard.html")
 
+def sponsorDashboard(request):
+    print("\n\n Sponsor Dashboard!\n\n")
+
+    return render(request, "PuttPutt/sponsorDashboard.html")
+
+### Takes user to manager dashboard
+def managerDashboard(request):
+    print("\n\n Manager Dashboard! \n\n")
+
+    return render(request, "PuttPutt/managerDashboard.html")
+
 ### Takes user to login page
 def loginPage(request):
     print("\n\n User Login page \n\n")
