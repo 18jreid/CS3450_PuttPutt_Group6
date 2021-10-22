@@ -46,7 +46,6 @@ class Tournament(models.Model):
     score_hole_16 = models.PositiveSmallIntegerField(default=0)
     score_hole_17 = models.PositiveSmallIntegerField(default=0)
     score_hole_18 = models.PositiveSmallIntegerField(default=0)
-    date = models.DateField()
 
 
 class Calendar(models.Model):

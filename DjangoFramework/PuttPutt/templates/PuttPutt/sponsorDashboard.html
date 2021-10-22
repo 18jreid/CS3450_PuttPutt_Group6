@@ -6,6 +6,11 @@
     <title>Sponsor Dashboard</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{% static 'PuttPutt/dashboardStyle.css' %}">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <!-- XDSoft DateTimePicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
 </head>
 <body style="background-color: #e1f5f5;">
     <div class="Header-Grid-Container">
@@ -19,10 +24,17 @@
     </div>
     <div>
         <h1 style="text-align: center;">Select Tournament to Sponsor</h1>
+
     </div> 
     <div class="Center-Box-Container"> 
         <div class="Mid_Option">
-            <p>Calendar to go here</p>
+            <p>Choose a date to sponsor:</p>
+            <input id="datetimepicker" type="text">
+            <script>
+               $(function () {
+                 $("#datetimepicker").datetimepicker();
+               });
+            </script>
         </div>
         <div class="Left_Option">
             <p>Add Prize Money To Account</p>
