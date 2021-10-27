@@ -1,9 +1,11 @@
-from PuttPutt.models import User
 from PuttPutt.models import Drink
 from django import http
 from datetime import datetime
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
+from django.contrib.auth.models import User
+from django.contrib import auth
+from django.contrib.auth import authenticate, logout
 
 # Create your views here.
 from django.views import generic
@@ -44,22 +46,6 @@ def drinkDemo(request):
     print("\n\n Drink Demo! \n\n")
 
     return render(request, "PuttPutt/drinkDemo.html")
-
-
-### Creates user from input from the create user page
-def createUser(request):
-    user_name = request.POST['userName']
-    password = request.POST['password']
-    user_id = request.POST['userID']
-
-    user = User()
-    user.user_name = user_name
-    user.password = password
-    user.user_id = user_id
-    user.account_balance = 500
-    user.save()
-
-    return HttpResponse("""<html><script>window.location.replace('/loginPage');</script></html>""")
 
 
 ### Creates drink from input from the create drink page
@@ -109,14 +95,130 @@ def loginPage(request):
 
 ### Checks if user exists, and if their password is correct. If it is then they will go to the user dashboard
 def signInUser(request):
-    potentialUsers = User.objects.all().filter(user_id=request.POST['userID'])
-    if (len(potentialUsers) != 0):
-        user = User.objects.get(user_id=request.POST['userID'])
+    userName = request.POST['userID']
+    password = request.POST['password']
 
-        if (user.password == request.POST['password']):
-            return render(request, "PuttPutt/playerDashboard.html")
-        else:
-            return HttpResponse("Incorrect Password")
+    myUser = authenticate(username=userName, password=password)
 
+    if (myUser is not None):
+        auth.login(request=request, user=myUser)
+        return redirect('playerDashboard')
     else:
-        return HttpResponse("User does not exist")
+        context = {
+            'error' : "Username or Password is incorrect"
+        }
+        return render(request, "Puttputt/loginPage.html", context)
+
+def login(request):
+    if (request.user.is_authenticated):
+        return redirect('playerDashboard')
+    else:
+        return render(request, "Puttputt/loginPage.html")
+
+def logout_user(request):
+    auth.logout(request)
+
+    return redirect('index')
+
+
+### Creates user from input from the create user page
+def createUser(request):
+    user_name = request.POST['userID']
+    email = request.POST['email']
+    emailConfirmation = request.POST['emailConfirmation']
+    first_name = request.POST['firstName']
+    last_name = request.POST['lastName']
+    password = request.POST['password']
+    passwordConfirmation = request.POST['passwordConfirmation']
+
+    return checkSignUpFields(request, user_name, first_name, last_name, email, emailConfirmation, password, passwordConfirmation)
+
+
+def checkSignUpFields(request, userName, firstName, lastName, email, emailConfirmation, password, passwordConfirmation):
+    context = {}
+    if (firstName == ""):
+        print("\n \n FIRST NAME IS EMPTY \n \n ")
+        context = {
+            'error' : "First name is empty"
+        }
+        return render(request, "Puttputt/createUser.html", context)
+
+    if (lastName == ""):
+        print("\n \n LAST NAME IS EMPTY \n \n")
+        context = {
+            'error' : "Last name is empty"
+        }
+        return render(request, "Puttputt/createUser.html", context)
+
+    if (userName == ""):
+        print("\n \n USERNAME IS EMPTY \n \n")
+        context = {
+            'error' : "Username is empty"
+        }
+        return render(request, "Puttputt/createUser.html", context)
+
+    if (email == ""):
+        print("\n \n EMAIL IS EMPTY \n \n ")
+        context = {
+            'error' : "Email is empty"
+        }
+        return render(request, "Puttputt/createUser.html", context)
+
+    if (emailConfirmation == ""):
+        print("\n \n EMAIL CONFIRMATION IS EMPTY \n \n ")
+        context = {
+            'error' : "Email confirmation is empty"
+        }
+        return render(request, "Puttputt/createUser.html", context)
+
+    if (password == ""):
+        print("\n \n  PASSWORD IS EMPTY \n \n ")
+        context = {
+            'error' : "Password is empty"
+        }
+        return render(request, "Puttputt/createUser.html", context)
+
+    if (passwordConfirmation == ""):
+        print("\n \n PASSWORD CONFIRMATION IS EMPTY\n \n ")
+        context = {
+            'error' : "Password Confirmation is empty"
+        }
+        return render(request, "Puttputt/createUser.html", context)
+
+    if (email != emailConfirmation):
+        print("\n \n EMAILS DO NOT MATCH")
+        context = {
+            'error' : "Emails don't match"
+        }
+        return render(request, "Puttputt/createUser.html", context)
+    
+    if (password != passwordConfirmation):
+        print("\n \n PASSWORDS DO NOT MATCH \n \n")
+        context = {
+            'error' : "Passwords do not match"
+        }
+        return render(request, "Puttputt/createUser.html", context)
+
+    userObjects =  User.objects.all()
+
+    for user in userObjects:
+        if (user.username == userName):
+            context = {
+                'error': "User already exists"
+            }
+            print("\n \n USER ALREADY EXISTS \n \n")
+            return render(request, "Puttputt/createUser.html", context)
+
+        if (user.email == email):
+            context = {
+                'error': "Email has already been used"
+            }
+            print("\n \n EMAIL HAS ALREADY BEEN USED \n \n")
+            return render(request, "Puttputt/createUser.html", context)
+
+    user = User.objects.create_user(userName, email, password)
+    user.first_name = firstName
+    user.last_name = lastName
+    user.save()
+    
+    return render(request, "Puttputt/loginPage.html")

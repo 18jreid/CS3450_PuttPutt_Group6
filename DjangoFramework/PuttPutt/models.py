@@ -2,28 +2,28 @@ from django.db import models
 
 
 # Create your models here.
-class User(models.Model):
-    user_id = models.CharField(max_length=14)
+# class User(models.Model):
+#     user_id = models.CharField(max_length=14)
 
-    PLAYER = 'PL'
-    SPONSOR = 'SP'
-    MANAGER = 'MA'
-    DRINKMEISTER = 'DM'
-    USER_TYPE_CHOICES = [
-        (PLAYER, 'Player'),
-        (SPONSOR, 'Sponsor'),
-        (MANAGER, 'Manager'),
-        (DRINKMEISTER, 'DrinkMeister'),
-    ]
-    user_type = models.CharField(
-        max_length = 2,
-        choices = USER_TYPE_CHOICES,
-        default = PLAYER
-    )
+#     PLAYER = 'PL'
+#     SPONSOR = 'SP'
+#     MANAGER = 'MA'
+#     DRINKMEISTER = 'DM'
+#     USER_TYPE_CHOICES = [
+#         (PLAYER, 'Player'),
+#         (SPONSOR, 'Sponsor'),
+#         (MANAGER, 'Manager'),
+#         (DRINKMEISTER, 'DrinkMeister'),
+#     ]
+#     user_type = models.CharField(
+#         max_length = 2,
+#         choices = USER_TYPE_CHOICES,
+#         default = PLAYER
+#     )
 
-    user_name = models.CharField(max_length=50)
-    password = models.CharField(max_length=21)
-    account_balance = models.FloatField(default=0)
+#     user_name = models.CharField(max_length=50)
+#     password = models.CharField(max_length=21)
+#     account_balance = models.FloatField(default=0)
 
 
 class Tournament(models.Model):
