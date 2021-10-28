@@ -1,29 +1,44 @@
 from django.db import models
-
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
-# class User(models.Model):
-#     user_id = models.CharField(max_length=14)
 
-#     PLAYER = 'PL'
-#     SPONSOR = 'SP'
-#     MANAGER = 'MA'
-#     DRINKMEISTER = 'DM'
-#     USER_TYPE_CHOICES = [
-#         (PLAYER, 'Player'),
-#         (SPONSOR, 'Sponsor'),
-#         (MANAGER, 'Manager'),
-#         (DRINKMEISTER, 'DrinkMeister'),
-#     ]
-#     user_type = models.CharField(
-#         max_length = 2,
-#         choices = USER_TYPE_CHOICES,
-#         default = PLAYER
-#     )
+# keeps track of additional info for our users
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-#     user_name = models.CharField(max_length=50)
-#     password = models.CharField(max_length=21)
-#     account_balance = models.FloatField(default=0)
+    PLAYER = 'PL'
+    SPONSOR = 'SP'
+    MANAGER = 'MA'
+    DRINKMEISTER = 'DM'
+
+    USER_TYPE_CHOICES = [
+        (PLAYER, 'Player'),
+        (SPONSOR, 'Sponsor'),
+        (MANAGER, 'Manager'),
+        (DRINKMEISTER, 'DrinkMeister'),
+    ]
+
+    user_type = models.CharField(
+        max_length = 2,
+        choices = USER_TYPE_CHOICES,
+        default = PLAYER
+    )
+
+    account_balance = models.FloatField(default=0)
+
+# create a profile when user accounts are created
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created: 
+        Profile.objects.create(user=instance)
+
+# when user accounts are updated, also update their profile
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
 
 
 class Tournament(models.Model):
