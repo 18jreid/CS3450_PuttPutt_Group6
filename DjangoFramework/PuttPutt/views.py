@@ -107,13 +107,13 @@ def signInUser(request):
         context = {
             'error' : "Username or Password is incorrect"
         }
-        return render(request, "Puttputt/loginPage.html", context)
+        return render(request, "PuttPutt/loginPage.html", context)
 
 def login(request):
     if (request.user.is_authenticated):
         return redirect('playerDashboard')
     else:
-        return render(request, "Puttputt/loginPage.html")
+        return render(request, "PuttPutt/loginPage.html")
 
 def logout_user(request):
     auth.logout(request)
@@ -141,63 +141,63 @@ def checkSignUpFields(request, userName, firstName, lastName, email, emailConfir
         context = {
             'error' : "First name is empty"
         }
-        return render(request, "Puttputt/createUser.html", context)
+        return render(request, "PuttPutt/createUser.html", context)
 
     if (lastName == ""):
         print("\n \n LAST NAME IS EMPTY \n \n")
         context = {
             'error' : "Last name is empty"
         }
-        return render(request, "Puttputt/createUser.html", context)
+        return render(request, "PuttPutt/createUser.html", context)
 
     if (userName == ""):
         print("\n \n USERNAME IS EMPTY \n \n")
         context = {
             'error' : "Username is empty"
         }
-        return render(request, "Puttputt/createUser.html", context)
+        return render(request, "PuttPutt/createUser.html", context)
 
     if (email == ""):
         print("\n \n EMAIL IS EMPTY \n \n ")
         context = {
             'error' : "Email is empty"
         }
-        return render(request, "Puttputt/createUser.html", context)
+        return render(request, "PuttPutt/createUser.html", context)
 
     if (emailConfirmation == ""):
         print("\n \n EMAIL CONFIRMATION IS EMPTY \n \n ")
         context = {
             'error' : "Email confirmation is empty"
         }
-        return render(request, "Puttputt/createUser.html", context)
+        return render(request, "PuttPutt/createUser.html", context)
 
     if (password == ""):
         print("\n \n  PASSWORD IS EMPTY \n \n ")
         context = {
             'error' : "Password is empty"
         }
-        return render(request, "Puttputt/createUser.html", context)
+        return render(request, "PuttPutt/createUser.html", context)
 
     if (passwordConfirmation == ""):
         print("\n \n PASSWORD CONFIRMATION IS EMPTY\n \n ")
         context = {
             'error' : "Password Confirmation is empty"
         }
-        return render(request, "Puttputt/createUser.html", context)
+        return render(request, "PuttPutt/createUser.html", context)
 
     if (email != emailConfirmation):
         print("\n \n EMAILS DO NOT MATCH")
         context = {
             'error' : "Emails don't match"
         }
-        return render(request, "Puttputt/createUser.html", context)
+        return render(request, "PuttPutt/createUser.html", context)
     
     if (password != passwordConfirmation):
         print("\n \n PASSWORDS DO NOT MATCH \n \n")
         context = {
             'error' : "Passwords do not match"
         }
-        return render(request, "Puttputt/createUser.html", context)
+        return render(request, "PuttPutt/createUser.html", context)
 
     userObjects =  User.objects.all()
 
@@ -207,18 +207,18 @@ def checkSignUpFields(request, userName, firstName, lastName, email, emailConfir
                 'error': "User already exists"
             }
             print("\n \n USER ALREADY EXISTS \n \n")
-            return render(request, "Puttputt/createUser.html", context)
+            return render(request, "PuttPutt/createUser.html", context)
 
         if (user.email == email):
             context = {
                 'error': "Email has already been used"
             }
             print("\n \n EMAIL HAS ALREADY BEEN USED \n \n")
-            return render(request, "Puttputt/createUser.html", context)
+            return render(request, "PuttPutt/createUser.html", context)
 
     user = User.objects.create_user(userName, email, password)
     user.first_name = firstName
     user.last_name = lastName
     user.save()
     
-    return render(request, "Puttputt/loginPage.html")
+    return render(request, "PuttPutt/loginPage.html")
