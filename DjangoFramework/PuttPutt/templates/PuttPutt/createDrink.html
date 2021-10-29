@@ -1,20 +1,31 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Create User</title>
-	<meta charset="UTF-8">
+    <title>Drink Order</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'PuttPutt/dashboardStyle.css' %}">
 </head>
-<body>
-	<h1 class="Temporary">Drink Creator</h1>
-
-    <form action="/createDrink" method="GET">
-        <label for="name">Drink Name: </label>
-        <input type="text" id="name" name="name" maxlength="30"><br><br>
-        <label for="description">Description: </label>
-        <input type="text" id="description" name="description" maxlength="300"><br><br>
-        <label for="cost">Cost: </label>
-        <input type="number" id="cost" name="cost"><br><br>
-        <input type="submit" value="Submit">
-    </form>
+<body style="background-color: #e1f5f5;">
+    <div class="Header-Grid-Container">
+        <div>
+            <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
+            <h3 style="text-align: right;">Current Balance: $0.00</h3>
+            <a class="Text_Link" href="{% url 'logout' %}"> <p style="text-align: right;"> <u>Sign out</u> </p> </a>
+        </div>
+    </div>
+    <div class="Header-Grid-Container" style="background-color: #4f698a">
+        <div></div>
+    </div>
+    <div class="Center-Box-Container" style="text-align: center;">
+        <form action="/createDrink" method="post">
+            {% csrf_token %}
+            <input type="text" id="name" name="name" maxlength="30" placeholder="Drink Name" style="font-size: 20px;"><br><br>
+            <input type="text" id="description" name="description" maxlength="300" placeholder="Description" style="font-size: 20px;"><br><br>
+            <input type="number" id="cost" name="cost" placeholder="Cost" style="font-size: 20px;"><br><br>
+            <input type="submit" value="Submit" style="font-size: 30px;">
+        </form>  
+    </div>
 </body>
 </html>

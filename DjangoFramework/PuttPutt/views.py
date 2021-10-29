@@ -50,9 +50,9 @@ def drinkDemo(request):
 
 ### Creates drink from input from the create drink page
 def createDrink(request):
-    name = request.GET['name']
-    description = request.GET['description']
-    cost = request.GET['cost']
+    name = request.POST['name']
+    description = request.POST['description']
+    cost = request.POST['cost']
 
     drink = Drink()
     drink.name = name
@@ -60,7 +60,7 @@ def createDrink(request):
     drink.cost = cost
     drink.save()
 
-    return HttpResponse("""<html><script>window.location.replace('/drinkDemo');</script></html>""")
+    return redirect("managerDashboard")
 
 
 ### Takes user to player dashboard
@@ -92,6 +92,17 @@ def loginPage(request):
 
     return render(request, "PuttPutt/loginPage.html")
 
+def manageUsers(request):
+    users = User.objects.all()
+    for user in users:
+        print(user)
+    context = {
+        'users' : users
+    }
+    print("\n\n Manage Users page \n\n")
+
+    return render(request, "PuttPutt/manageUsers.html", context)
+
 
 ### Checks if user exists, and if their password is correct. If it is then they will go to the user dashboard
 def signInUser(request):
@@ -102,7 +113,15 @@ def signInUser(request):
 
     if (myUser is not None):
         auth.login(request=request, user=myUser)
-        return redirect('playerDashboard')
+
+        if (myUser.profile.user_type == "PL"):
+            return redirect('playerDashboard')
+        elif (myUser.profile.user_type == "SP"):
+            return redirect('sponsorDashboard')
+        elif (myUser.profile.user_type == "MA"):
+            return redirect('managerDashboard')
+        elif (myUser.profile.user_type == "DM"):
+            return redirect('drinkmeisterDashboard')
     else:
         context = {
             'error' : "Username or Password is incorrect"

@@ -12,9 +12,10 @@ urlpatterns = [
     path('createUserPage', views.createUserPage),
     path('createUser', views.createUser),
     path('playerDashboard', views.playerDashboard, name="playerDashboard"),
-    path('drinkmeisterDashboard', views.drinkmeisterDashboard),
-    path('sponsorDashboard', views.sponsorDashboard),
-    path('managerDashboard', views.managerDashboard),
+    path('drinkmeisterDashboard', views.drinkmeisterDashboard, name="drinkmeisterDashboard"),
+    path('sponsorDashboard', views.sponsorDashboard, name="sponsorDashboard"),
+    path('managerDashboard', views.managerDashboard, name="managerDashboard"),
+    path('manageUsers', views.manageUsers, name="manageUsers"),
     path('loginPage', views.login, name="login"),
     path('signInUser', views.signInUser),
     path('logout', views.logout_user, name='logout')
