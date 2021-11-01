@@ -7,7 +7,7 @@
     display: grid;
     grid-template-columns: 100%;
     background-color: #7099ce;
-    text-shadow: -2px 3px #999;;
+    text-shadow: 2px 2px 7px #999;;
 }
 
 .Header-Grid-Container > div {
@@ -26,7 +26,7 @@
     margin-bottom: 1em;
     padding-top: 2em;
     padding-bottom: 2em;
-    box-shadow: -2px 3px #999;
+    box-shadow: 1px 4px 4px #999;
     border-radius: 15px;
     
 }
