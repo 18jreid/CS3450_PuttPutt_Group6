@@ -8,15 +8,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'PuttPutt/dashboardStyle.css' %}">
 </head>
 <body style="background-color: #e1f5f5;">
-    <div class="Header-Grid-Container">
-        <div>
+    <div id="header">
+        <div id="headerText">
             <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
             <h3 style="text-align: right;">Current Balance: $0.00</h3>
             <a class="Text_Link" href="{% url 'logout' %}"> <p style="text-align: right;"> <u>Sign out</u> </p> </a>
         </div>
-    </div>
-    <div class="Header-Grid-Container" style="background-color: #4f698a">
-        <div></div>
     </div>
     <div class="Center-Box-Container">
         <div class="Left_Option">
