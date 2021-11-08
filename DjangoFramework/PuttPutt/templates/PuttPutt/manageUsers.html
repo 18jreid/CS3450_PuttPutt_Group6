@@ -8,16 +8,15 @@
     <link rel="stylesheet" type="text/css" href="{% static 'PuttPutt/dashboardStyle.css' %}">
 </head>
 <body style="background-color: #e1f5f5;">
-    <div class="Header-Grid-Container">
-        <div>
+    <div id="header">
+        <div id="headerText">
             <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
             <a class="Text_Link" href="{% url 'logout' %}"> <p style="text-align: right;"> <u>Sign out</u> </p> </a>
         </div>
     </div>
-    <div class="Header-Grid-Container" style="background-color: #4f698a">
-        <div></div>
-    </div>
-    <div style="text-align: center;">
+
+    <div class="Center-Box-Container" style="text-align: center;">
+        <div style="text-align: center;">
         <label style="margin-right: 1em;">User Name</label>
         <input id="userChoice" placeholder="User" style="font-size: 20px; margin-top: 1em; margin-bottom: 1em;"><br>
         <label style="margin-right: 1em;">User Type</label>
@@ -29,7 +28,6 @@
           </select><br>
           <button style="margin-top: 1em; font-size: 25px;">Submit</button>
     </div>
-    <div class="Center-Box-Container" style="text-align: center;">
         <h2 style="margin-bottom: 1em;">Click to choose User</h2>
         {% for u in users %}
             <button onclick="putInUserChoice(this)" style="font-size: 25px; margin-bottom: 1em;">{{u}}</button><br>
