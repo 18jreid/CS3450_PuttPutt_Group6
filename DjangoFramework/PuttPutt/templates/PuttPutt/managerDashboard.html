@@ -12,12 +12,12 @@
         <div id="headerText">
             <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
             <h3 style="text-align: right;">Current Balance: $0.00</h3>
-            <a class="Text_Link" href="{% url 'logout' %}"> <p style="text-align: right;"> <u>Sign out</u> </p> </a>
+            <p style="text-align: right;"> <a class="Text_Link" href="{% url 'logout' %}"> <u>Sign out</u> </a> </p>
         </div>
     </div>
     <div class="Center-Box-Container"> 
         <div class="Left_Option">
-            <p>Current Tournament</p>
+            <a class="Text_Link" href="{% url 'manageCurrentTournament' %}">Current Tournament</a>
         </div>  
         <div class="Right_Option">
             <p>Calendar</p>

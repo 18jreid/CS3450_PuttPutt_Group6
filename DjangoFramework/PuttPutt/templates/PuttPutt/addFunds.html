@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Drinkmeister Dashboard</title>
+    <title>Add Funds</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{% static 'PuttPutt/dashboardStyle.css' %}">
 </head>
@@ -15,16 +15,16 @@
             <p style="text-align: right;"> <a class="Text_Link" href="{% url 'logout' %}"> <u>Sign out</u> </a> </p>
         </div>
     </div>
-    <div class="Center-Box-Container-Scrollable">
-        <h1 style="text-align: center;">Drink Orders Pending</h1>
-        <div class="Mid_Option">
-            <p>Drink orders will appear here</p>
-        </div>
-        <div class="Mid_Option">
-            <p>They will be clickable in order to complete the orders</p>
-        </div>
-        <div class="Mid_Option">
-            <p>The center box container should also be able to change height based on the number of orders there are.</p>
+    <div class="Center-Box-Container">
+        <!-- Link this to corresponding user's dashboard-->
+        <p style="text-align: right;"> <a class="Text_Link_Dark" href="{% url 'playerDashboard' %}"> <u>Back To Dashboard</u> </a> </p>
+        <h1>Add Funds</h1>
+        <div class="Mid_Container">
+            <!-- Display current amount of funds-->
+            <h2>Current Balance: $0.00</h2>
+            <p>Add how much money?</p>
+            <input type="text">
+            <p><button>Confirm</button></p>
         </div>
     </div>
 </body>
