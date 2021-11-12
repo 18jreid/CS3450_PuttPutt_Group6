@@ -67,7 +67,14 @@ def createDrink(request):
 def playerDashboard(request):
     print("\n\n Player Dashboard! \n\n")
 
-    return render(request, "PuttPutt/playerDashboard.html")
+    if (request.user.profile.user_type == "PL"):
+        return render(request, "PuttPutt/playerDashboard.html")
+    elif (request.user.profile.user_type == "SP"):
+        return redirect('sponsorDashboard')
+    elif (request.user.profile.user_type == "MA"):
+        return redirect('managerDashboard')
+    elif (request.user.profile.user_type == "DM"):
+        return redirect('drinkmeisterDashboard')
 
 ### Takes user to player scoresheet
 def scoresheet(request):
@@ -125,10 +132,35 @@ def manageUsers(request):
 
     return render(request, "PuttPutt/manageUsers.html", context)
 
+def updateUserType(request):
+    userChoice = request.POST['userChoice']
+    userType = request.POST['userType']
+    allUsers = User.objects.all()
+
+    if (userChoice != ""):
+        for user in allUsers:
+            if (user.username == userChoice):
+                user.profile.user_type = userType
+                user.profile.save()
+                return redirect('playerDashboard')
+            else:
+                context = {
+                    'users' : allUsers,
+                    'errors' : "Not a valid user"
+                }
+
+                return render(request, "PuttPutt/manageUsers.html", context)
+    else:
+        context = {
+            'users' : allUsers,
+            'errors' : "Must enter a user"
+        }
+
+        return render(request, "PuttPutt/manageUsers.html", context)
+
 
 ### Checks if user exists, and if their password is correct. If it is then they will go to the user dashboard
 def signInUser(request):
-    print("sign in user")
     userName = request.POST['userID']
     password = request.POST['password']
 
@@ -137,14 +169,7 @@ def signInUser(request):
     if (myUser is not None):
         auth.login(request=request, user=myUser)
 
-        if (myUser.profile.user_type == "PL"):
-            return redirect('playerDashboard')
-        elif (myUser.profile.user_type == "SP"):
-            return redirect('sponsorDashboard')
-        elif (myUser.profile.user_type == "MA"):
-            return redirect('managerDashboard')
-        elif (myUser.profile.user_type == "DM"):
-            return redirect('drinkmeisterDashboard')
+        return playerDashboard(request)
     else:
         context = {
             'error' : "Username or Password is incorrect"

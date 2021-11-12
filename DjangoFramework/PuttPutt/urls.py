@@ -20,6 +20,7 @@ urlpatterns = [
     path('managerDashboard', views.managerDashboard, name="managerDashboard"),
     path('manageCurrentTournament', views.manageCurrentTournament, name="manageCurrentTournament"),
     path('manageUsers', views.manageUsers, name="manageUsers"),
+    path('updateUserType', views.updateUserType, name="updateUserType"),
     path('loginPage', views.login, name="login"),
     path('signInUser', views.signInUser),
     path('logout', views.logout_user, name='logout')
