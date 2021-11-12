@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Scoresheet</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'PuttPutt/dashboardStyle.css' %}">
+</head>
+<body style="background-color: #e1f5f5;">
+    <div id="header">
+        <div id="headerText">
+            <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
+            <h3 style="text-align: right;">Current Balance: $0.00</h3>
+            <p style="text-align: right;"> <a class="Text_Link" href="{% url 'logout' %}"> <u>Sign out</u> </a> </p>
+        </div>
+    </div>
+    <div class="Center-Box-Container">
+        <p style="text-align: right;"> <a class="Text_Link_Dark" href="{% url 'playerDashboard' %}"> <u>Back To Dashboard</u> </a> </p>
+        <h1>Score</h1>
+        <!-- Fill with text fields-->
+        <div class="Table-Grid">
+            <div class="L_Column"><b>Hole</b></div>
+            <div class="R_Column"><b>Score</b></div>
+            <div class="L_Column">1</div>
+            <div class="R_Column">Score One</div>
+            <div class="L_Column">2</div>
+            <div class="R_Column">Score Two</div>
+            <div class="L_Column">3</div>
+            <div class="R_Column">Score Three</div>
+            <div class="L_Column">4</div>
+            <input type="text" class="R_Column">
+            <div class="L_Column">5</div>
+            <input type="text" class="R_Column">
+            <div class="L_Column">6</div>
+            <input type="text" class="R_Column">
+            <div class="L_Column">7</div>
+            <input type="text" class="R_Column">
+            <div class="L_Column">8</div> 
+            <input type="text" class="R_Column">
+            <div class="L_Column">9</div> 
+            <input type="text" class="R_Column">   
+          </div>  
+          <!-- Get button to update scores when clicked-->
+          <button style="margin-top: 1em; font-size: medium;">Enter Score</button> 
+    </div>
+</body>
+</html>

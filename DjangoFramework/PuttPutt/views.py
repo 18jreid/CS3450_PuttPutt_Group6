@@ -69,6 +69,22 @@ def playerDashboard(request):
 
     return render(request, "PuttPutt/playerDashboard.html")
 
+### Takes user to player scoresheet
+def scoresheet(request):
+    print("\n\n Scoresheet! \n\n")
+
+    return render(request, "PuttPutt/scoresheet.html")
+
+def orderDrinks(request):
+    print("\n\n Order Drinks page! \n\n")
+
+    return render(request, "PuttPutt/orderDrinks.html")
+
+def addFunds(request):
+    print("\n\n Add Funds page! \n\n")
+
+    return render(request, "PuttPutt/addFunds.html")
+
 ### Takes user to drinkmeister dashboard
 def drinkmeisterDashboard(request):
     print("\n\n Drinkmeister Dashboard! \n\n")
@@ -85,6 +101,12 @@ def managerDashboard(request):
     print("\n\n Manager Dashboard! \n\n")
 
     return render(request, "PuttPutt/managerDashboard.html")
+
+### Takes manager to manage current tournament page
+def manageCurrentTournament(request):
+    print("\n\n Manage Current Tournament page! \n\n")
+
+    return render(request, "PuttPutt/manageCurrentTournament.html")
 
 ### Takes user to login page
 def loginPage(request):

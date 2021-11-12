@@ -17,14 +17,15 @@
         <div id="headerText">
             <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
             <h3 style="text-align: right;">Current Balance: $0.00</h3>
-            <a class="Text_Link" href="{% url 'logout' %}"> <p style="text-align: right;"> <u>Sign out</u> </p> </a>
+            <p style="text-align: right;"> <a class="Text_Link" href="{% url 'logout' %}"> <u>Sign out</u> </a> </p>
         </div>
     </div>
     <div class="Center-Box-Container">
         <h1 style="text-align: center;">Select Tournament to Sponsor</h1>
-        <div class="Mid_Option">
+        <div class="Mid_Container">
             <p>Choose a date to sponsor:</p>
             <input id="datetimepicker" type="text">
+            <button>Confirm</button>
             <script>
                $(function () {
                  $("#datetimepicker").datetimepicker();
@@ -32,7 +33,7 @@
             </script>
         </div>
         <div class="Mid_Option">
-            <p>Add Prize Money To Account</p>
+            <a class="Text_Link" href="{% url 'addFunds' %}">Add Prize Money To Account</a>
         </div>
     </div>
 </body>

@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Order Drinks</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'PuttPutt/dashboardStyle.css' %}">
+</head>
+<body style="background-color: #e1f5f5;">
+    <div id="header">
+        <div id="headerText">
+            <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
+            <h3 style="text-align: right;">Current Balance: $0.00</h3>
+            <p style="text-align: right;"> <a class="Text_Link" href="{% url 'logout' %}"> <u>Sign out</u> </a> </p>
+        </div>
+    </div>
+    <div class="Center-Box-Container-Scrollable">
+        <p style="text-align: right;"> <a class="Text_Link_Dark" href="{% url 'playerDashboard' %}"> <u>Back To Dashboard</u> </a> </p>
+        <h1>Order Drinks</h1>
+        <!-- Fill with drink menu-->
+        <div class="Drink-Grid-Container">
+            <div> 
+                <p>Drink 1</p>
+                <p>Description 1</p>
+                <p>Price 1</p>
+                <p class="Text_Link" style="margin-top: 10px;"> <u>Add To Order</u> </p>
+            </div>
+            <div> 
+                <p>Drink 2</p>
+                <p>Description 2</p>
+                <p>Price 2</p>
+                <p class="Text_Link" style="margin-top: 10px;"> <u>Add To Order</u> </p>
+            </div>
+            <div> 
+                <p>Drink 3</p>
+                <p>Description 3</p>
+                <p>Price 3</p>
+                <p class="Text_Link" style="margin-top: 10px;"> <u>Add To Order</u> </p>
+            </div>
+            <div> 
+                <p>Drink 4</p>
+                <p>Description 4</p>
+                <p>Price 4</p>
+                <p class="Text_Link" style="margin-top: 10px;"> <u>Add To Order</u> </p>
+            </div>
+            <div> 
+                <p>Drink 5</p>
+                <p>Description 5</p>
+                <p>Price 5</p>
+                <p class="Text_Link" style="margin-top: 10px;"> <u>Add To Order</u> </p>
+            </div>
+         </div>
+         <!-- Updates as player adds drinks to order-->
+         <div class="Mid_Container">
+            <p><h3><u>Current Order</u></h3></p>
+            <p><span style="white-space: pre;">Drink 1              Price 1            <span class=Text_Link><u>Remove Drink</u></span></pre>
+            <p><span style="white-space: pre;">Drink 1              Price 1            <span class=Text_Link><u>Remove Drink</u></span></pre>
+            <p><span style="white-space: pre;">Drink 3              Price 3            <span class=Text_Link><u>Remove Drink</u></span></pre>
+            <p style="text-align: right; margin-right: 10px;"><b>Total: Total price</b></p>
+         </div>
+         <p>Deliver to which hole?</p>
+         <input type="text">
+         <!-- Submit and send order-->
+         <p><button style="margin-top: 1em; font-size: medium;">Confirm Order</button></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Manage Users</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'PuttPutt/dashboardStyle.css' %}">
+</head>
+<body style="background-color: #e1f5f5;">
+    <div id="header">
+        <div id="headerText">
+            <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
+            <p style="text-align: right;"> <a class="Text_Link" href="{% url 'logout' %}"> <u>Sign out</u> </a> </p>
+        </div>
+    </div>
+
+    <div class="Center-Box-Container" style="text-align: center;">
+        <p style="text-align: right;"> <a class="Text_Link_Dark" href="{% url 'managerDashboard' %}"> <u>Back To Dashboard</u> </a> </p>
+        <h1>Current Tournament</h1>
+        <!-- Update this with current tournament date--> 
+        <h2>Wednesday, October 11</h2>
+        <!-- Populate table with players and their current scores-->
+        <div class="Table-Grid">
+            <div class="L_Column"><b>Player</b></div>
+            <div class="R_Column"><b>Score</b></div>
+            <div class="L_Column">John Smith</div>
+            <div class="R_Column">10</div>
+            <div class="L_Column">Albert Einstein</div>
+            <div class="R_Column">14</div>
+            <div class="L_Column">Nikolai Tesla</div>
+            <div class="R_Column">16</div>
+        </div>
+    </div>
+</html>
