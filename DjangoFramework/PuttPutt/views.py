@@ -13,7 +13,12 @@ from .models import *
 
 
 def index(request):
-    return render(request, "PuttPutt/index.html")
+    tournaments = Calendar.objects.all()
+    context = {
+        'tournaments' : tournaments
+    }
+
+    return render(request, "PuttPutt/index.html", context)
 
 
 def databaseDebugger(request):
@@ -92,6 +97,13 @@ def addFunds(request):
 
     return render(request, "PuttPutt/addFunds.html")
 
+def addMoney(request):
+    amount = request.POST['amount']
+    request.user.profile.account_balance = request.user.profile.account_balance + int(amount)
+    request.user.profile.save()
+
+    return redirect('playerDashboard')
+
 ### Takes user to drinkmeister dashboard
 def drinkmeisterDashboard(request):
     print("\n\n Drinkmeister Dashboard! \n\n")
@@ -100,8 +112,27 @@ def drinkmeisterDashboard(request):
 
 def sponsorDashboard(request):
     print("\n\n Sponsor Dashboard!\n\n")
+    tournaments = Calendar.objects.all()
+    context = {
+        'tournaments' : tournaments
+    }
 
-    return render(request, "PuttPutt/sponsorDashboard.html")
+    return render(request, "PuttPutt/sponsorDashboard.html", context)
+
+def sponsorTournament(request):
+    date = request.POST['datetimepicker']
+    date = date[0:10].replace("/", "-")
+    print("\n\n\n" + date + "\n\n\n")
+    prizeAmount = request.POST['prizeAmount']
+    sponsor = request.user.username
+
+    calenderTournament = Calendar()
+    calenderTournament.date = date
+    calenderTournament.prize_pool = prizeAmount
+    calenderTournament.sponsor = sponsor
+    calenderTournament.save()
+
+    return redirect("sponsorDashboard")
 
 ### Takes user to manager dashboard
 def managerDashboard(request):
@@ -143,17 +174,10 @@ def updateUserType(request):
                 user.profile.user_type = userType
                 user.profile.save()
                 return redirect('playerDashboard')
-            else:
-                context = {
-                    'users' : allUsers,
-                    'errors' : "Not a valid user"
-                }
-
-                return render(request, "PuttPutt/manageUsers.html", context)
     else:
         context = {
             'users' : allUsers,
-            'errors' : "Must enter a user"
+            'errors' : "Invalid User"
         }
 
         return render(request, "PuttPutt/manageUsers.html", context)

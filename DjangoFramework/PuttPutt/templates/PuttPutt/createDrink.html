@@ -11,7 +11,7 @@
     <div class="Header-Grid-Container">
         <div>
             <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
-            <h3 style="text-align: right;">Current Balance: $0.00</h3>
+            <h3 style="text-align: right;">Current Balance: ${{user.profile.account_balance}}</h3>
             <a class="Text_Link" href="{% url 'logout' %}"> <p style="text-align: right;"> <u>Sign out</u> </p> </a>
         </div>
     </div>
