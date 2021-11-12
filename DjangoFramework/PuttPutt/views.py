@@ -108,7 +108,14 @@ def addMoney(request):
 def drinkmeisterDashboard(request):
     print("\n\n Drinkmeister Dashboard! \n\n")
 
-    return render(request, "PuttPutt/drinkmeisterDashboard.html")
+    if (request.user.profile.user_type == "PL"):
+        return redirect("playerDashboard")
+    elif (request.user.profile.user_type == "SP"):
+        return redirect('sponsorDashboard')
+    elif (request.user.profile.user_type == "MA"):
+        return redirect('managerDashboard')
+    elif (request.user.profile.user_type == "DM"):
+        return render(request, "PuttPutt/drinkmeisterDashboard.html")
 
 def sponsorDashboard(request):
     print("\n\n Sponsor Dashboard!\n\n")
@@ -117,7 +124,14 @@ def sponsorDashboard(request):
         'tournaments' : tournaments
     }
 
-    return render(request, "PuttPutt/sponsorDashboard.html", context)
+    if (request.user.profile.user_type == "PL"):
+        return redirect("playerDashboard")
+    elif (request.user.profile.user_type == "SP"):
+        return render(request, "PuttPutt/sponsorDashboard.html", context)
+    elif (request.user.profile.user_type == "MA"):
+        return redirect('managerDashboard')
+    elif (request.user.profile.user_type == "DM"):
+        return redirect('drinkmeisterDashboard')
 
 def sponsorTournament(request):
     date = request.POST['datetimepicker']
@@ -138,7 +152,14 @@ def sponsorTournament(request):
 def managerDashboard(request):
     print("\n\n Manager Dashboard! \n\n")
 
-    return render(request, "PuttPutt/managerDashboard.html")
+    if (request.user.profile.user_type == "PL"):
+        return redirect("playerDashboard")
+    elif (request.user.profile.user_type == "SP"):
+        return redirect('sponsorDashboard')
+    elif (request.user.profile.user_type == "MA"):
+        return render(request, "PuttPutt/managerDashboard.html")
+    elif (request.user.profile.user_type == "DM"):
+        return redirect('drinkmeisterDashboard')
 
 ### Takes manager to manage current tournament page
 def manageCurrentTournament(request):
