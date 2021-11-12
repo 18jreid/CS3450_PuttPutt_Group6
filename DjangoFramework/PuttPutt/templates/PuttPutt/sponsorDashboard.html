@@ -16,25 +16,38 @@
     <div id="header">
         <div id="headerText">
             <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
-            <h3 style="text-align: right;">Current Balance: $0.00</h3>
+            <h3 style="text-align: right;">Current Balance: ${{user.profile.account_balance}}</h3>
             <p style="text-align: right;"> <a class="Text_Link" href="{% url 'logout' %}"> <u>Sign out</u> </a> </p>
         </div>
     </div>
     <div class="Center-Box-Container">
-        <h1 style="text-align: center;">Select Tournament to Sponsor</h1>
+        <h1 style="text-align: center;">Tournaments Scheduled</h1>
         <div class="Mid_Container">
-            <p>Choose a date to sponsor:</p>
-            <input id="datetimepicker" type="text">
-            <button>Confirm</button>
-            <script>
-               $(function () {
-                 $("#datetimepicker").datetimepicker();
-               });
-            </script>
+            {% for tournament in tournaments %}
+                <p>Date: {{tournament.date}}, Prize-Pool: ${{tournament.prize_pool}}</p>
+            {% endfor %}
         </div>
-        <div class="Mid_Option">
-            <a class="Text_Link" href="{% url 'addFunds' %}">Add Prize Money To Account</a>
+        <h1 style="text-align: center;">Tournament Sponsor</h1>
+        {% if errors %}
+            <p>{{errors}}</p>
+        {% endif %}
+        <div class="Mid_Container">
+            <form action="/sponsorTournament" method="POST">
+                {% csrf_token %}
+                <input name="datetimepicker" id="datetimepicker" type="text" placeholder="Year/Month/Day" style="font-size: 25px;"><br>
+                <input name="prizeAmount" id="prizeAmount" type="number" placeholder="$ Prize Amount" style="font-size: 25px; margin-top: 1em;" min="0" step="1000"><br>
+                <button style="font-size: 25px; margin-top: 1em;">Sponsor</button>
+            </form>
+        </div>
+        <div class="Right_Option">
+            <a class="Text_Link" href="{% url 'addFunds' %}">Add Funds</a>
         </div>
     </div>
 </body>
+
+<script>
+    $(function () {
+      $("#datetimepicker").datetimepicker();
+    });
+ </script>
 </html>

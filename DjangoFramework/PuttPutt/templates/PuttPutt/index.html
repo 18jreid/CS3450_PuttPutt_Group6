@@ -32,7 +32,11 @@
                 <div id="upcomingTournaments">
 
                     <!-- Fill with upcoming tournaments -->
-                    <div class="upcomingTournamentElement"><p>Friday, November 2nd at 9:00 am</p></div>
+                    <div class="upcomingTournamentElement">
+                        {% for tournament in tournaments %}
+                            <p>Date: {{tournament.date}}, Prize-Pool: ${{tournament.prize_pool}}</p>
+                        {% endfor %}
+                    </div>
 
                 </div>
             </div>

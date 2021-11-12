@@ -11,7 +11,7 @@
     <div id="header">
         <div id="headerText">
             <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
-            <h3 style="text-align: right;">Current Balance: $0.00</h3>
+            <h3 style="text-align: right;">Current Balance: ${{user.profile.account_balance}}</h3>
             <p style="text-align: right;"> <a class="Text_Link" href="{% url 'logout' %}"> <u>Sign out</u> </a> </p>
         </div>
     </div>
@@ -23,8 +23,11 @@
             <!-- Display current amount of funds-->
             <h2>Current Balance: $0.00</h2>
             <p>Add how much money?</p>
-            <input type="text">
-            <p><button>Confirm</button></p>
+            <form action="/addMoney" method="POST">
+                {% csrf_token %}
+                <input name="amount" id="amount" type="number" step="25" min="0">
+                <button type="submit">Confirm</button>
+            </form>
         </div>
     </div>
 </body>
