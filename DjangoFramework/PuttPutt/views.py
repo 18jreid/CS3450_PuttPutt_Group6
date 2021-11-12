@@ -128,6 +128,7 @@ def manageUsers(request):
 
 ### Checks if user exists, and if their password is correct. If it is then they will go to the user dashboard
 def signInUser(request):
+    print("sign in user")
     userName = request.POST['userID']
     password = request.POST['password']
 
