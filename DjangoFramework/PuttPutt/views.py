@@ -134,19 +134,34 @@ def sponsorDashboard(request):
         return redirect('drinkmeisterDashboard')
 
 def sponsorTournament(request):
+    tournaments = Calendar.objects.all()
+    context = {
+        'tournaments' : tournaments
+    }
     date = request.POST['datetimepicker']
-    date = date[0:10].replace("/", "-")
-    print("\n\n\n" + date + "\n\n\n")
-    prizeAmount = request.POST['prizeAmount']
-    sponsor = request.user.username
+    if (date != ""):
+        date = date[0:10].replace("/", "-")
+        prizeAmount = request.POST['prizeAmount']
+        if prizeAmount != "":
+            sponsor = request.user.username
 
-    calenderTournament = Calendar()
-    calenderTournament.date = date
-    calenderTournament.prize_pool = prizeAmount
-    calenderTournament.sponsor = sponsor
-    calenderTournament.save()
+            calenderTournament = Calendar()
+            calenderTournament.date = date
+            calenderTournament.prize_pool = prizeAmount
+            calenderTournament.sponsor = sponsor
+            calenderTournament.save()
+        else:
+            context = {
+                'tournaments' : tournaments,
+                'errors' : "Enter in a valid Prize Amount"
+            }
+    else:
+        context = {
+            'tournaments' : tournaments,
+            'errors' : "Enter in a valid date"
+        }
 
-    return redirect("sponsorDashboard")
+    return render(request, "PuttPutt/sponsorDashboard.html", context)
 
 ### Takes user to manager dashboard
 def managerDashboard(request):

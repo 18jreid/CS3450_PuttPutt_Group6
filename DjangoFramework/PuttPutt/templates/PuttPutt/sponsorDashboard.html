@@ -28,11 +28,14 @@
             {% endfor %}
         </div>
         <h1 style="text-align: center;">Tournament Sponsor</h1>
+        {% if errors %}
+            <p>{{errors}}</p>
+        {% endif %}
         <div class="Mid_Container">
             <form action="/sponsorTournament" method="POST">
                 {% csrf_token %}
                 <input name="datetimepicker" id="datetimepicker" type="text" placeholder="Year/Month/Day" style="font-size: 25px;"><br>
-                <input name="prizeAmount" id="prizeAmount" type="number" placeholder="$ Prize Amount" style="font-size: 25px; margin-top: 1em;"><br>
+                <input name="prizeAmount" id="prizeAmount" type="number" placeholder="$ Prize Amount" style="font-size: 25px; margin-top: 1em;" min="0" step="1000"><br>
                 <button style="font-size: 25px; margin-top: 1em;">Sponsor</button>
             </form>
         </div>

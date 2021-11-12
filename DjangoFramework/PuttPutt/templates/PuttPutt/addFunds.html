@@ -25,7 +25,7 @@
             <p>Add how much money?</p>
             <form action="/addMoney" method="POST">
                 {% csrf_token %}
-                <input name="amount" id="amount" type="number">
+                <input name="amount" id="amount" type="number" step="25" min="0">
                 <button type="submit">Confirm</button>
             </form>
         </div>
