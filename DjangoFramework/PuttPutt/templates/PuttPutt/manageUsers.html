@@ -17,17 +17,24 @@
 
     <div class="Center-Box-Container" style="text-align: center;">
         <div style="text-align: center;">
-        <label style="margin-right: 1em;">User Name</label>
-        <input id="userChoice" placeholder="User" style="font-size: 20px; margin-top: 1em; margin-bottom: 1em;"><br>
-        <label style="margin-right: 1em;">User Type</label>
-        <select name="cars" id="cars" style="font-size: 20px; margin-top: .5em;">
-            <option value="Player">Player</option>
-            <option value="Sponsor">Sponsor</option>
-            <option value="Manager">Manager</option>
-            <option value="DrinkMeister">DrinkMeister</option>
-          </select><br>
-          <button style="margin-top: 1em; font-size: 25px;">Submit</button>
-    </div>
+            <p style="text-align: right;"> <a class="Text_Link_Dark" href="{% url 'playerDashboard' %}"> <u>Back To Dashboard</u> </a></p>
+            {% if errors %}
+                <p>{{errors}}</p>
+            {% endif %}
+            <form action="/updateUserType" method="POST">
+                {% csrf_token %}
+                <label style="margin-right: 1em;">User Name</label>
+                <input id="userChoice" name="userChoice" placeholder="User" style="font-size: 20px; margin-top: 1em; margin-bottom: 1em;"><br>
+                <label style="margin-right: 1em;">User Type</label>
+                <select name="userType" id="userType" name="userType" style="font-size: 20px; margin-top: .5em;">
+                    <option value="PL">PL</option>
+                    <option value="SP">SP</option>
+                    <option value="MA">MA</option>
+                    <option value="DM">DM</option>
+                </select><br>
+                <button style="margin-top: 1em; font-size: 25px;">Submit</button>
+            </form>
+        </div>
         <h2 style="margin-bottom: 1em;">Click to choose User</h2>
         {% for u in users %}
             <button onclick="putInUserChoice(this)" style="font-size: 25px; margin-bottom: 1em;">{{u}}</button><br>
