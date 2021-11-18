@@ -34,6 +34,20 @@ Installation Notes
 	$ python manage.py runserver 192.168.0.1:8080
 --------------------------------------------------------------------------------------------------------
 
+Running the Project
+----------------------------------------------------
+- After you've cloned the repo, move to `CS3450_PuttPutt_Group6/DjangoFramework` and run `python manage.py migrate`. 
+
+- Create an admin account with `python manage.py createsuperuser`. 
+
+- Start the app with `python manage.py runserver`, and head to
+	`http://127.0.0.1:8000/`
+
+- Sign in with your admin account, or create users. You can add money to your
+	account, enter a score, and order drinks! Manager and DrinkMeister account
+	functionality is incoming.
+
+----------------------------------------------------
 
 Organization:
 ----------------------------------------------------
