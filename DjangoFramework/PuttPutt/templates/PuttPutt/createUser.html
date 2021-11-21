@@ -14,17 +14,19 @@
         </div>
         <div id="content">
             <h1>User Sign Up</h1>
-            <form action="/createUser" method="POST">
-                {% csrf_token %}
-                <input type="text" id="userID" name="userID" placeholder="User Name"><br><br>
-                <input type="text" id="firstName" name="firstName" placeholder="First name"><br><br>
-                <input type="text" id="lastName" name="lastName" placeholder="Last Name"><br><br>
-                <input type="text" id="email" name="email" placeholder="Email"><br><br>
-                <input type="text" id="emailConfirmation" name="emailConfirmation" placeholder="Email Confirmation"><br><br>
-                <input type="password" id="password" name="password" placeholder="Password"><br><br>
-                <input type="password" id="passwordConfirmation" name="passwordConfirmation" placeholder="Password Confirmation"><br><br>
-                <input type="submit" value="Submit">
-            </form>
+            <div class="Login-Container" style="padding: 3em; padding-left: 5em; padding-right: 5em;">
+                <form action="/createUser" method="POST">
+                    {% csrf_token %}
+                    <input class="Login-Input" type="text" id="userID" name="userID" placeholder="User Name"><br><br>
+                    <input class="Login-Input" type="text" id="firstName" name="firstName" placeholder="First name"><br><br>
+                    <input class="Login-Input" type="text" id="lastName" name="lastName" placeholder="Last Name"><br><br>
+                    <input class="Login-Input" type="text" id="email" name="email" placeholder="Email"><br><br>
+                    <input class="Login-Input" type="text" id="emailConfirmation" name="emailConfirmation" placeholder="Email Confirmation"><br><br>
+                    <input class="Login-Input" type="password" id="password" name="password" placeholder="Password"><br><br>
+                    <input class="Login-Input" type="password" id="passwordConfirmation" name="passwordConfirmation" placeholder="Password Confirmation"><br><br>
+                    <input type="submit" value="Submit" class="Login-Button">
+                </form>
+            </div>
             {% if error %}
                 <br>
                 <p>{{error}}</p>

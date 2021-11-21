@@ -14,15 +14,17 @@
         <div id="content">
             <h1>User Sign In</h1>
 
-            <form action="/signInUser" method="POST">
-                {% csrf_token %}
-                <input type="text" id="userID" name="userID" placeholder="Username"><br><br>
-                <input type="password" id="password" name="password" placeholder="Password"><br><br>
-                <input type="submit" value="Submit">
-            </form>
-            <form action="/createUserPage">
-                <input type="submit" value="Sign up">
-            </form>
+            <div class="Login-Container" style="padding: 3em; padding-left: 8em; padding-right: 8em;">
+                <form action="/signInUser" method="POST" style="display: inline;">
+                    {% csrf_token %}
+                    <input class="Login-Input" type="text" id="userID" name="userID" placeholder="Username"><br><br>
+                    <input class="Login-Input" type="password" id="password" name="password" placeholder="Password" style="font-size: 15px;"><br><br>
+                    <input type="submit" value="Login" class="Login-Button" style="font-size: 15px; display: inline;">
+                </form>
+                <form action="/createUserPage" style="display: inline;">
+                    <input type="submit" value="Sign up" class="Login-Button" style="font-size: 15px; display: inline;">
+                </form>
+            </div>
 
             {% if error %}
                 <br>

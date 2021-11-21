@@ -38,7 +38,7 @@
             </div>
             <div>
                 <h2>Upcoming Tournaments</h2>
-                <div id="upcomingTournaments">
+                <div class="Upcoming-Tournaments">
 
                     <!-- Fill with upcoming tournaments -->
                     <div class="upcomingTournamentElement">
@@ -46,7 +46,7 @@
                             {% for tournament in tournaments %}
                                 <p style="display: inline;">Date: {{tournament.date}}, </p>
                                 <p style="display: inline;">Prize Pool: </p>
-                                <p style="color: green; display: inline;">${{tournament.prize_pool}}</p><br>
+                                <p style="color: limegreen; display: inline;">${{tournament.prize_pool}}</p><br>
                             {% endfor %}
                         {% else %}
                             <p>No upcoming tournaments.</p>
