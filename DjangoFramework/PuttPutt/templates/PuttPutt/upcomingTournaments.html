@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Manager Dashboard</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'PuttPutt/dashboardStyle.css' %}">
+</head>
+<body style="background-color: #e1f5f5;">
+    <div id="header">
+        <div id="headerText">
+            <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
+            <h3 style="text-align: right;">Current Balance: ${{user.profile.account_balance}}</h3>
+            <p style="text-align: right;"> <a class="Text_Link" href="{% url 'logout' %}"> <u>Sign out</u> </a> </p>
+        </div>
+    </div>
+    <div class="Center-Box-Container"> 
+        <p style="text-align: right;"> <a class="Text_Link_Dark" href="{% url 'playerDashboard' %}"> <u>Back To Dashboard</u> </a></p><br>
+
+        <div>
+            <h1>Upcoming Tournaments</h1><br>
+            <div id="upcomingTournaments" style="font-size: 20px;">
+
+                <!-- Fill with upcoming tournaments -->
+                <div class="upcomingTournamentElement">
+                    {% if tournaments %}
+                        {% for tournament in tournaments %}
+                            <p style="display: inline;">Date: {{tournament.date}}, </p>
+                            <p style="display: inline;">Prize Pool: </p>
+                            <p style="color: green; display: inline;">${{tournament.prize_pool}}</p><br>
+                        {% endfor %}
+                    {% else %}
+                        <p>No upcoming tournaments.</p>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

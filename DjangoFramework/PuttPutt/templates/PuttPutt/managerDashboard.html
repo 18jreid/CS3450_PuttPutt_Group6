@@ -17,15 +17,18 @@
     </div>
     <div class="Center-Box-Container"> 
         <div class="Left_Option">
-            <a class="Text_Link" href="{% url 'manageCurrentTournament' %}">Current Tournament</a>
-        </div>  
-        <div class="Right_Option">
-            <p>Calendar</p>
-        </div>  
-        <div class="Left_Option">
             <a class="Text_Link" href="{% url 'manageUsers' %}">View/Edit Users</a>
         </div>  
         <div class="Right_Option">
+            <a class="Text_Link" href="{% url 'manageCurrentTournament' %}">Current Tournament</a>
+        </div>  
+        <div class="Right_Option">
+            <a class="Text_Link" href="{% url 'upcomingTournaments' %}">Upcoming Tournaments</a>
+        </div>  
+        <div class="Left_Option">
+            <a class="Text_Link" href="{% url 'addFunds' %}">Add Funds</a>
+        </div>   
+        <div class="Left_Option">
             <p>Manage Funds</p>
         </div>
     </div>

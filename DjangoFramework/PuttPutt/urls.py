@@ -27,6 +27,7 @@ urlpatterns = [
     path('saveScorecard', views.saveScorecard, name="saveScorecard"),
     path('scoresheet', views.scoresheet, name="scoresheet"),
     path('signInUser', views.signInUser),
+    path('upcomingTournaments', views.upcomingTournaments, name="upcomingTournaments"),
     path('testButtonFunction', views.testButtonFunction),
     path('updateUserType', views.updateUserType, name="updateUserType")
 ]

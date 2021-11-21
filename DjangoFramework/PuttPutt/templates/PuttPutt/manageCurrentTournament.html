@@ -11,25 +11,30 @@
     <div id="header">
         <div id="headerText">
             <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
+            <h3 style="text-align: right;">Current Balance: ${{user.profile.account_balance}}</h3>
             <p style="text-align: right;"> <a class="Text_Link" href="{% url 'logout' %}"> <u>Sign out</u> </a> </p>
         </div>
     </div>
 
     <div class="Center-Box-Container" style="text-align: center;">
         <p style="text-align: right;"> <a class="Text_Link_Dark" href="{% url 'managerDashboard' %}"> <u>Back To Dashboard</u> </a> </p>
-        <h1>Current Tournament</h1>
-        <!-- Update this with current tournament date--> 
-        <h2>Wednesday, October 11</h2>
-        <!-- Populate table with players and their current scores-->
-        <div class="Table-Grid">
-            <div class="L_Column"><b>Player</b></div>
-            <div class="R_Column"><b>Score</b></div>
-            <div class="L_Column">John Smith</div>
-            <div class="R_Column">10</div>
-            <div class="L_Column">Albert Einstein</div>
-            <div class="R_Column">14</div>
-            <div class="L_Column">Nikolai Tesla</div>
-            <div class="R_Column">16</div>
-        </div>
+        {% if todaysTourney %}
+            <h1>Current Tournament</h1>
+            <!-- Update this with current tournament date--> 
+            <h2>{{todaysTourney.date}}</h2><br>
+            <!-- Populate table with players and their current scores-->
+            <div class="Table-Grid">
+                <div class="L_Column"><b>Player</b></div>
+                <div class="R_Column"><b>Score</b></div>
+                {% for player in players %}
+                    <div class="L_Column" style="color: teal;">{{player.getUserName}}</div>
+                    <div class="R_Column">{{player.scoreSum}}</div>
+                {% endfor %}
+            </div>
+            <p style="display: inline;">Prize Pool: </p>
+            <p style="color: green; display: inline;">${{todaysTourney.prize_pool}}</p><br>
+        {% else %}
+            <p>There is no tournament scheduled today :(</p>
+        {% endif %}
     </div>
 </html>

@@ -11,6 +11,7 @@
     <div id="header">
         <div id="headerText">
             <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
+            <h3 style="text-align: right;">Current Balance: ${{user.profile.account_balance}}</h3>
             <p style="text-align: right;"> <a class="Text_Link" href="{% url 'logout' %}"> <u>Sign out</u> </a> </p>
         </div>
     </div>
@@ -18,34 +19,43 @@
     <div class="Center-Box-Container" style="text-align: center;">
         <div style="text-align: center;">
             <p style="text-align: right;"> <a class="Text_Link_Dark" href="{% url 'playerDashboard' %}"> <u>Back To Dashboard</u> </a></p>
-            {% if errors %}
-                <p>{{errors}}</p>
-            {% endif %}
+            <div style="border-width: 10px; border-style: ridge; background-color: #4f698a; border-color: #4f698a; margin-left: 15%; margin-right: 15%; margin-top: 2em; padding-top: 1em; padding-bottom: 1em;">
+                {% if errors %}
+                    <p>{{errors}}</p>
+                {% endif %}
             <form action="/updateUserType" method="POST">
                 {% csrf_token %}
-                <label style="margin-right: 1em;">User Name</label>
-                <input id="userChoice" name="userChoice" placeholder="User" style="font-size: 20px; margin-top: 1em; margin-bottom: 1em;"><br>
-                <label style="margin-right: 1em;">User Type</label>
-                <select name="userType" id="userType" name="userType" style="font-size: 20px; margin-top: .5em;">
-                    <option value="PL">PL</option>
-                    <option value="SP">SP</option>
-                    <option value="MA">MA</option>
-                    <option value="DM">DM</option>
-                </select><br>
+                <table>
+                    <tr>
+                        <th style="border: none;">
+                            <label style="color: white; font-size: 25px;">User Name</label>
+                        </th>
+                        <th style="border: none;">
+                            <select name="userChoice" id="userChoice" name="userChoice" style="font-size: 20px; margin-top: .5em;">
+                                {% for u in users %}
+                                    <option value="{{u}}">{{u}}</option>
+                                {% endfor %}
+                            </select><br>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="border: none;">
+                            <label style="color: white; font-size: 25px;">User Type</label>
+                        </th>
+                        <th style="border: none;">
+                            <select name="userType" id="userType" name="userType" style="font-size: 20px; margin-top: .5em;">
+                                <option value="PL">Player</option>
+                                <option value="SP">Sponsor</option>
+                                <option value="MA">Manager</option>
+                                <option value="DM">Drinkmeister</option>
+                            </select><br>
+                        </th>
+                    </tr>
+                </table>
                 <button style="margin-top: 1em; font-size: 25px;">Submit</button>
             </form>
+            </div>
         </div>
-        <h2 style="margin-bottom: 1em;">Click to choose User</h2>
-        {% for u in users %}
-            <button onclick="putInUserChoice(this)" style="font-size: 25px; margin-bottom: 1em;">{{u}}</button><br>
-        {% endfor %}
     </div>
 </body>
-<script>
-    function putInUserChoice(element) {
-        var userChoice = document.getElementById("userChoice");
-        userChoice.value = element.textContent;
-        console.log(element.textContent);
-    }
-</script>
 </html>

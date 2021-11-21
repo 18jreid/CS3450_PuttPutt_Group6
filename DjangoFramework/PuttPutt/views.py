@@ -225,7 +225,7 @@ def index(request):
 
     for t in tournaments:
         if (t.date == date.today()):
-            todaysTourney = t.date
+            todaysTourney = t
 
             newTournaments = Calendar.objects.all().exclude(date=t.date)
 
@@ -283,8 +283,23 @@ def managerDashboard(request):
 # Takes manager to manage current tournament page
 def manageCurrentTournament(request):
     print("\n\n Manage Current Tournament page! \n\n")
+    tournaments = Calendar.objects.all()
+    context = {
+        'tournaments' : tournaments
+    }
 
-    return render(request, "PuttPutt/manageCurrentTournament.html")
+    for t in tournaments:
+        if (t.date == date.today()):
+            todaysTourney = t
+            prizePool = t.prize_pool
+            players = Tournament.objects.all().filter(date=date.today())
+            
+            context = {
+                'todaysTourney' : todaysTourney,
+                'players' : players
+            }
+
+    return render(request, "PuttPutt/manageCurrentTournament.html", context)
 
 # Takes user to the manage users page
 def manageUsers(request):
@@ -453,3 +468,10 @@ def updateUserType(request):
 
         return render(request, "PuttPutt/manageUsers.html", context)
 
+def upcomingTournaments(request):
+    tournaments = Calendar.objects.all()
+    context = {
+        'tournaments' : tournaments
+    }
+
+    return render(request, "PuttPutt/upcomingTournaments.html", context)

@@ -24,7 +24,9 @@
         <h1 style="text-align: center;">Tournaments Scheduled</h1>
         <div class="Mid_Container">
             {% for tournament in tournaments %}
-                <p>Date: {{tournament.date}}, Prize-Pool: ${{tournament.prize_pool}}</p>
+                <p style="display: inline;">{{tournament.date}}, </p>
+                <p style="display: inline;">Prize Pool: </p>
+                <p style="color: limegreen; display: inline;">${{tournament.prize_pool}}</p><br>
             {% endfor %}
         </div>
         <h1 style="text-align: center;">Tournament Sponsor</h1>
