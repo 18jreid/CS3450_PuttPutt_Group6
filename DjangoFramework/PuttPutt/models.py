@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from datetime import date
+from django import utils
 
 # Create your models here.
 
@@ -42,6 +44,7 @@ def save_user_profile(sender, instance, **kwargs):
 
 
 class Tournament(models.Model):
+    date = models.DateField(default= utils.timezone.now)
     user_id = models.CharField(max_length=14)
     score_hole_1 = models.PositiveSmallIntegerField(default=0)
     score_hole_2 = models.PositiveSmallIntegerField(default=0)
@@ -61,6 +64,22 @@ class Tournament(models.Model):
     score_hole_16 = models.PositiveSmallIntegerField(default=0)
     score_hole_17 = models.PositiveSmallIntegerField(default=0)
     score_hole_18 = models.PositiveSmallIntegerField(default=0)
+
+    @property
+    def scoreSum(self):
+        total = self.score_hole_1 + self.score_hole_2 + self.score_hole_3 + self.score_hole_4 + self.score_hole_5 + self.score_hole_6 + self.score_hole_7 + self.score_hole_8 + self.score_hole_9 + self.score_hole_10 + self.score_hole_11 + self.score_hole_12 + self.score_hole_13 + self.score_hole_14 + self.score_hole_15 + self.score_hole_16 + self.score_hole_17 + self.score_hole_18
+
+        return total
+
+    @property
+    def getUserName(self):
+        allUsers = User.objects.all()
+        name = "No Name"
+        for user in allUsers:
+            if (self.user_id == user.username):
+                name = user.get_full_name()
+        
+        return name
 
 
 class Calendar(models.Model):

@@ -15,16 +15,23 @@
             <h1>Welcome to Putt-Putt!</h1>
             <div>
                 <h2>Leaderboard</h2>
-                <p id="leaderboardDate">Wednesday, October 11th</p>
                 <div id="leaderboard">
-                    <table>
-                        <tr>
-                            <th>Player</th>
-                            <th>Score</th>
-                        </tr>
-                        <!-- Fill with player stats-->
-                        <tr><td>John Smith</td><td>10</td></tr>
-                    </table>
+                    {% if todaysTourney %}
+                        <p>{{todaysTourney}}</p>
+                        <table>
+                            <tr>
+                                <th>Player</th>
+                                <th>Score</th>
+                            </tr>
+                            <!-- Fill with player stats-->
+                            {% for player in players %}
+                            <tr><td>{{player.getUserName}}</td><td>{{ player.scoreSum }}</td></tr>
+                            {% endfor %}
+                        </table>
+
+                    {% else %}
+                        <p>There's no tournament today :(</p><br><br><br>
+                    {% endif %}
                 </div>
             </div>
             <div>
@@ -33,9 +40,13 @@
 
                     <!-- Fill with upcoming tournaments -->
                     <div class="upcomingTournamentElement">
-                        {% for tournament in tournaments %}
-                            <p>Date: {{tournament.date}}, Prize-Pool: ${{tournament.prize_pool}}</p>
-                        {% endfor %}
+                        {% if tournaments %}
+                            {% for tournament in tournaments %}
+                                <p>Date: {{tournament.date}}, Prize-Pool: ${{tournament.prize_pool}}</p>
+                            {% endfor %}
+                        {% else %}
+                            <p>No upcoming tournaments.</p>
+                        {% endif %}
                     </div>
 
                 </div>

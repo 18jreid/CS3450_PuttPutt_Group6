@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Current Tournament</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'PuttPutt/dashboardStyle.css' %}">
+</head>
+<body style="background-color: #e1f5f5;">
+    <div id="header">
+        <div id="headerText">
+            <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
+            <h3 style="text-align: right;">Current Balance: ${{user.profile.account_balance}}</h3>
+            <p style="text-align: right;"> <a class="Text_Link" href="{% url 'logout' %}"> <u>Sign out</u> </a> </p>
+        </div>
+    </div>
+    <div class="Center-Box-Container">
+        <p style="text-align: right;"> <a class="Text_Link_Dark" href="{% url 'playerDashboard' %}"> <u>Back To Dashboard</u> </a> </p>
+        {% if todaysTourney %}
+            <h1>Scoreboard</h1>
+                <table>
+                    <tr>
+                        <th>Player</th>
+                        <th>Score</th>
+                    </tr>
+                    <!-- Fill with player stats-->
+                    {% for player in players %}
+                    <tr><td>{{player.getUserName}}</td><td>{{ player.scoreSum }}</td></tr>
+                    {% endfor %}
+                </table>
+
+            {% if isPlaying %}
+                <div class="Mid_Option">
+                    <a class="Text_Link" href="{% url 'scoresheet' %}">Enter Score</a>
+                </div>  
+            {% else %}
+                <div class="Mid_Option">
+                    <a class="Text_Link" href="{% url 'joinTournament' %}">Join Tournament</a>
+                </div>
+            {% endif %}
+        {% else %}
+            <p>There is no tournament today</p>
+        {% endif %}
+    </div>
+</body>
+
+<script>
+    function sumScores(player) {
+        var score = 0;
+        score += player.score_hole_1;
+        score += player.score_hole_2;
+        score += player.score_hole_3;
+        score += player.score_hole_4;
+        score += player.score_hole_5;
+        score += player.score_hole_6;
+        score += player.score_hole_7;
+        score += player.score_hole_8;
+        score += player.score_hole_9;
+        score += player.score_hole_10;
+        score += player.score_hole_11;
+        score += player.score_hole_12;
+        score += player.score_hole_13;
+        score += player.score_hole_14;
+        score += player.score_hole_15;
+        score += player.score_hole_16;
+        score += player.score_hole_17;
+        score += player.score_hole_18;
+
+        console.log(score);
+
+        return score;
+    }
+</script>
+</html>

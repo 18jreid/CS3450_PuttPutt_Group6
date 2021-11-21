@@ -11,38 +11,48 @@
     <div id="header">
         <div id="headerText">
             <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
-            <h3 style="text-align: right;">Current Balance: $0.00</h3>
+            <h3 style="text-align: right;">Current Balance: ${{user.profile.account_balance}}</h3>
             <p style="text-align: right;"> <a class="Text_Link" href="{% url 'logout' %}"> <u>Sign out</u> </a> </p>
         </div>
     </div>
     <div class="Center-Box-Container">
         <p style="text-align: right;"> <a class="Text_Link_Dark" href="{% url 'playerDashboard' %}"> <u>Back To Dashboard</u> </a> </p>
         <h1>Score</h1>
-        <!-- Fill with text fields-->
-        <div class="Table-Grid">
-            <div class="L_Column"><b>Hole</b></div>
-            <div class="R_Column"><b>Score</b></div>
-            <div class="L_Column">1</div>
-            <div class="R_Column">Score One</div>
-            <div class="L_Column">2</div>
-            <div class="R_Column">Score Two</div>
-            <div class="L_Column">3</div>
-            <div class="R_Column">Score Three</div>
-            <div class="L_Column">4</div>
-            <input type="text" class="R_Column">
-            <div class="L_Column">5</div>
-            <input type="text" class="R_Column">
-            <div class="L_Column">6</div>
-            <input type="text" class="R_Column">
-            <div class="L_Column">7</div>
-            <input type="text" class="R_Column">
-            <div class="L_Column">8</div> 
-            <input type="text" class="R_Column">
-            <div class="L_Column">9</div> 
-            <input type="text" class="R_Column">   
-          </div>  
-          <!-- Get button to update scores when clicked-->
-          <button style="margin-top: 1em; font-size: medium;">Enter Score</button> 
+          <form action="/saveScorecard" method="POST">
+            {% csrf_token %}
+            <div class="Table-Grid">
+                <div class="L_Column"><b>Hole</b></div>
+                <div class="R_Column"><b>Score</b></div>
+                
+                <div class="L_Column">1</div>
+                <input class="R_Column" name="score_1" id="score_1" value="{{player.score_hole_1}}" type="number" min="0" max="10">
+    
+                <div class="L_Column">2</div>
+                <input class="R_Column" name="score_2" id="score_2" value="{{player.score_hole_2}}" type="number" min="0" max="10">
+    
+                <div class="L_Column">3</div>
+                <input class="R_Column" name="score_3" id="score_3" value="{{player.score_hole_3}}" type="number" min="0" max="10">
+    
+                <div class="L_Column">4</div>
+                <input class="R_Column" name="score_4" id="score_4" value="{{player.score_hole_4}}" type="number" min="0" max="10">
+    
+                <div class="L_Column">5</div>
+                <input class="R_Column" name="score_5" id="score_5" value="{{player.score_hole_5}}" type="number" min="0" max="10">
+    
+                <div class="L_Column">6</div>
+                <input class="R_Column" name="score_6" id="score_6" value="{{player.score_hole_6}}" type="number" min="0" max="10">
+    
+                <div class="L_Column">7</div>
+                <input class="R_Column" name="score_7" id="score_7" value="{{player.score_hole_7}}" type="number" min="0" max="10">
+    
+                <div class="L_Column">8</div> 
+                <input class="R_Column" name="score_8" id="score_8" value="{{player.score_hole_8}}" type="number" min="0" max="10">
+    
+                <div class="L_Column">9</div> 
+                <input class="R_Column" name="score_9" id="score_9" value="{{player.score_hole_9}}" type="number" min="0" max="10">   
+              </div>  
+              <button style="margin-top: 1em; font-size: medium;" type="submit">Enter Score</button> 
+        </form>
     </div>
 </body>
 </html>

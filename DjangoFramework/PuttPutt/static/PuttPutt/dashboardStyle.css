@@ -197,3 +197,12 @@ body {
 .Drink-Grid-Container > div > p {
     color: white;
 }
+
+table {
+    margin-left:auto;
+    margin-right:auto;
+}
+th, td {
+    border: 1px solid black;
+    padding: 5px 10px 5px 10px;
+}
