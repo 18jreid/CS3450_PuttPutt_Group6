@@ -49,6 +49,9 @@ padding: 3px
 }
 
 .Login-Container {
+    padding: 4%;
+    padding-left: 8%;
+    padding-right: 8%;
     display: inline-block;
     color: white;
     background-color: #4f698a;

@@ -14,7 +14,7 @@
         <div id="content">
             <h1>User Sign In</h1>
 
-            <div class="Login-Container" style="padding: 3em; padding-left: 8em; padding-right: 8em;">
+            <div class="Login-Container">
                 <form action="/signInUser" method="POST" style="display: inline;">
                     {% csrf_token %}
                     <input class="Login-Input" type="text" id="userID" name="userID" placeholder="Username"><br><br>
