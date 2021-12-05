@@ -96,7 +96,7 @@ class Drink(models.Model):
 
 
 class DrinkOrders(models.Model):
-    user_id = models.CharField(max_length=12)
+    user_id = models.CharField(max_length=14)
     drink = models.CharField(max_length=30)
     hole_number = models.PositiveSmallIntegerField(default=0)
 

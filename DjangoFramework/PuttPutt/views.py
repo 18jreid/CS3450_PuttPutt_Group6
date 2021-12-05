@@ -51,7 +51,7 @@ def createDrink(request):
     drink.cost = cost
     drink.save()
 
-    return redirect("managerDashboard")
+    return redirect("manageDrinks")
 
 # Creates user from input from the create user page
 def createUser(request):
@@ -313,6 +313,18 @@ def manageUsers(request):
 
     return render(request, "PuttPutt/manageUsers.html", context)
 
+# Takes user to the manage users page
+def manageDrinks(request):
+    drinks = Drink.objects.all()
+    for drink in drinks:
+        print(drink)
+    context = {
+        'drinks' : drinks
+    }
+    print("\n\n Manage Drinks page \n\n")
+
+    return render(request, "PuttPutt/manageDrinks.html", context)
+
 # Takes user to the order drinks page
 def orderDrinks(request):
     print("\n\n Order Drinks page! \n\n")
@@ -467,6 +479,24 @@ def updateUserType(request):
         }
 
         return render(request, "PuttPutt/manageUsers.html", context)
+
+# Updates the drink menu
+def updateDrink(request):
+    drinkChoice = request.POST['drinkChoice']
+    allDrinks = Drink.objects.all()
+
+    if (drinkChoice != ""):
+        for drink in allDrinks:
+            if (str(drink) == drinkChoice):
+                drink.delete()
+                return redirect('manageDrinks')
+    else:
+        context = {
+            'drinks' : allDrinks,
+            'errors' : "Invalid Drink"
+        }
+
+        return render(request, "PuttPutt/manageDrinks.html", context)
 
 def upcomingTournaments(request):
     tournaments = Calendar.objects.all()
