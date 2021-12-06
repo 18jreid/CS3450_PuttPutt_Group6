@@ -214,7 +214,15 @@ def drinkmeisterDashboard(request):
     elif (request.user.profile.user_type == "MA"):
         return redirect('managerDashboard')
     elif (request.user.profile.user_type == "DM"):
-        return render(request, "PuttPutt/drinkmeisterDashboard.html")
+        drinkOrders = DrinkOrder.objects.all()
+        for drink in drinkOrders: 
+            print(f"drinkOrder: {drink}")
+
+        context = {
+            'drinkOrders' : drinkOrders   
+        }
+
+        return render(request, "PuttPutt/drinkmeisterDashboard.html", context)
 
 # Takes user to index page (AKA Main page)
 def index(request):
@@ -505,6 +513,37 @@ def updateDrink(request):
 
         return render(request, "PuttPutt/manageDrinks.html", context)
 
+# Completes a drink order
+def completeDrinkOrder(request):
+    drinkOrder = request.POST['drinkOrder']
+
+    print(f"drink order received: {drinkOrder}")
+
+    drinkOrders = DrinkOrder.objects.all()
+    for d in drinkOrders: 
+        if (str(d) == drinkOrder):
+            d.delete()
+
+    drinkOrders = DrinkOrder.objects.all()
+    context = {
+        'drinkOrders' : drinkOrders   
+    }
+
+    return render(request, "PuttPutt/drinkmeisterDashboard.html", context)
+
+    # if (drinkChoice != ""):
+    #     for drink in allDrinks:
+    #         if (str(drink) == drinkChoice):
+    #             drink.delete()
+    #             return redirect('manageDrinks')
+    # else:
+    #     context = {
+    #         'drinks' : allDrinks,
+    #         'errors' : "Invalid Drink"
+    #     }
+    #
+    #     return render(request, "PuttPutt/manageDrinks.html", context)
+
 # order a drink
 def orderDrinkRequest(request):
     drinkChoice = request.POST['drinkChoice']
@@ -531,7 +570,7 @@ def orderDrinkRequest(request):
     drinkOrder = DrinkOrder()
     drinkOrder.user_id = request.user.username
     drinkOrder.drink = drink.name
-    drinkOrder.hole = holeNumber
+    drinkOrder.hole_number = holeNumber
     drinkOrder.save()
 
     context = {

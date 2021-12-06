@@ -32,5 +32,6 @@ urlpatterns = [
     path('testButtonFunction', views.testButtonFunction),
     path('updateUserType', views.updateUserType, name="updateUserType"),
     path('updateDrink', views.updateDrink, name="updateDrink"),
-    path('orderDrinkRequest', views.orderDrinkRequest, name="orderDrinkRequest")
+    path('orderDrinkRequest', views.orderDrinkRequest, name="orderDrinkRequest"),
+    path('completeDrinkOrder', views.completeDrinkOrder, name="completeDrinkOrder")
 ]
