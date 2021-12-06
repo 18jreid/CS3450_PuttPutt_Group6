@@ -328,8 +328,15 @@ def manageDrinks(request):
 # Takes user to the order drinks page
 def orderDrinks(request):
     print("\n\n Order Drinks page! \n\n")
+    drinks = Drink.objects.all()
+    for drink in drinks:
+        print(drink)
+    context = {
+        'drinks' : drinks,
+    }
+    print("\n\n Order Drinks page \n\n")
 
-    return render(request, "PuttPutt/orderDrinks.html")
+    return render(request, "PuttPutt/orderDrinks.html", context)
 
 # Takes user to player dashboard page
 def playerDashboard(request):
@@ -497,6 +504,41 @@ def updateDrink(request):
         }
 
         return render(request, "PuttPutt/manageDrinks.html", context)
+
+# order a drink
+def orderDrinkRequest(request):
+    drinkChoice = request.POST['drinkChoice']
+    holeNumber = request.POST['holeNumber']
+
+    print(f"drinkChoice: {drinkChoice}")
+    print(f"holeNumber: {holeNumber}")
+    drink = Drink.objects.get(name=drinkChoice)
+
+    account_balance = request.user.profile.account_balance
+    if (drink.cost > account_balance):
+
+        drinks = Drink.objects.all()
+        context = {
+            'error' : "Account balance too low :(",
+            'drinks': drinks
+        }
+
+        return render(request, "PuttPutt/orderDrinks.html", context)
+
+    request.user.profile.account_balance = account_balance - drink.cost
+    request.user.profile.save()
+
+    drinkOrder = DrinkOrder()
+    drinkOrder.user_id = request.user.username
+    drinkOrder.drink = drink.name
+    drinkOrder.hole = holeNumber
+    drinkOrder.save()
+
+    context = {
+        'confirmation' : f"{drink.name} is on the way!"
+    }
+
+    return render(request, "PuttPutt/playerDashboard.html", context)
 
 def upcomingTournaments(request):
     tournaments = Calendar.objects.all()

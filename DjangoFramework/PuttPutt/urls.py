@@ -31,5 +31,6 @@ urlpatterns = [
     path('upcomingTournaments', views.upcomingTournaments, name="upcomingTournaments"),
     path('testButtonFunction', views.testButtonFunction),
     path('updateUserType', views.updateUserType, name="updateUserType"),
-    path('updateDrink', views.updateDrink, name="updateDrink")
+    path('updateDrink', views.updateDrink, name="updateDrink"),
+    path('orderDrinkRequest', views.orderDrinkRequest, name="orderDrinkRequest")
 ]

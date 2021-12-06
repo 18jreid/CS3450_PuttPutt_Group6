@@ -95,7 +95,7 @@ class Drink(models.Model):
     cost = models.FloatField(default=0)
 
 
-class DrinkOrders(models.Model):
+class DrinkOrder(models.Model):
     user_id = models.CharField(max_length=14)
     drink = models.CharField(max_length=30)
     hole_number = models.PositiveSmallIntegerField(default=0)

@@ -19,50 +19,58 @@
         <p style="text-align: right;"> <a class="Text_Link_Dark" href="{% url 'playerDashboard' %}"> <u>Back To Dashboard</u> </a> </p>
         <h1>Order Drinks</h1>
         <!-- Fill with drink menu-->
+        <h3>Drink Menu:</h3>
         <div class="Drink-Grid-Container">
-            <div> 
-                <p>Drink 1</p>
-                <p>Description 1</p>
-                <p>Price 1</p>
-                <p class="Text_Link" style="margin-top: 10px;"> <u>Add To Order</u> </p>
-            </div>
-            <div> 
-                <p>Drink 2</p>
-                <p>Description 2</p>
-                <p>Price 2</p>
-                <p class="Text_Link" style="margin-top: 10px;"> <u>Add To Order</u> </p>
-            </div>
-            <div> 
-                <p>Drink 3</p>
-                <p>Description 3</p>
-                <p>Price 3</p>
-                <p class="Text_Link" style="margin-top: 10px;"> <u>Add To Order</u> </p>
-            </div>
-            <div> 
-                <p>Drink 4</p>
-                <p>Description 4</p>
-                <p>Price 4</p>
-                <p class="Text_Link" style="margin-top: 10px;"> <u>Add To Order</u> </p>
-            </div>
-            <div> 
-                <p>Drink 5</p>
-                <p>Description 5</p>
-                <p>Price 5</p>
-                <p class="Text_Link" style="margin-top: 10px;"> <u>Add To Order</u> </p>
-            </div>
+            {% for d in drinks %}
+              <div> 
+                  <p>{{d.name}}</p>
+                  <p>{{d.description}}</p>
+                  <p>${{d.cost}}</p>
+              </div>
+            {% endfor %}
          </div>
-         <!-- Updates as player adds drinks to order-->
+
          <div class="Mid_Container">
-            <p><h3><u>Current Order</u></h3></p>
-            <p><span style="white-space: pre;">Drink 1              Price 1            <span class=Text_Link><u>Remove Drink</u></span></pre>
-            <p><span style="white-space: pre;">Drink 1              Price 1            <span class=Text_Link><u>Remove Drink</u></span></pre>
-            <p><span style="white-space: pre;">Drink 3              Price 3            <span class=Text_Link><u>Remove Drink</u></span></pre>
-            <p style="text-align: right; margin-right: 10px;"><b>Total: Total price</b></p>
+            <form action="/orderDrinkRequest" method="POST">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <th style="border: none;">
+                            <label style="color: white; font-size: 25px;">Selection:</label>
+                        </th>
+                        <th style="border: none;">
+                            <select name="drinkChoice" id="drinkChoice" name="drinkChoice" style="font-size: 20px; margin-top: .5em;">
+                                {% for d in drinks %}
+                                    <option value="{{d.name}}">{{d.name}}</option>
+                                {% endfor %}
+                            </select><br>
+                        </th>
+                        <tr> <tr/>
+                        <th style="border: none;">
+                            <label style="color: white; font-size: 25px;">Deliver to which hole?:</label>
+                        </th>
+                        <th style="border: none;">
+                            <select name="holeNumber" id="holeNumber" name="holeNumber" style="font-size: 20px; margin-top: .5em;">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                            </select><br>
+                        </th>
+                    </tr>
+                </table>
+                <button style="margin-top: 1em; font-size: 25px;">Submit Order</button>
+            </form>
+            {% if error %}
+                <br>
+                <p>{{error}}</p>
+            {% endif %}
          </div>
-         <p>Deliver to which hole?</p>
-         <input type="text">
-         <!-- Submit and send order-->
-         <p><button style="margin-top: 1em; font-size: medium;">Confirm Order</button></p>
     </div>
 </body>
 </html>

@@ -15,6 +15,7 @@
             <p style="text-align: right;"> <a class="Text_Link" href="{% url 'logout' %}"> <u>Sign out</u> </a> </p>
         </div>
     </div>
+    {% csrf_token %}
     <div class="Center-Box-Container">
         <div class="Left_Option">
             <a class="Text_Link" href="{% url 'currentTournament' %}">Current Tournament</a>
@@ -25,6 +26,10 @@
         <div class="Left_Option">
             <a class="Text_Link" href="{% url 'addFunds' %}">Add Funds</a>
         </div>    
+        {% if confirmation %}
+            <br>
+            <p>{{confirmation}}</p>
+        {% endif %}
     </div>
 </body>
 </html>
