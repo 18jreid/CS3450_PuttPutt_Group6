@@ -6,7 +6,7 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('addFunds', views.addFunds, name="addFunds"),
     path('addMoney', views.addMoney, name="addMoney"),
-    path('createDrinkPage', views.createDrinkPage),
+    path('createDrinkPage', views.createDrinkPage, name="createDrink"),
     path('createDrink', views.createDrink),
     path('createUserPage', views.createUserPage),
     path('createUser', views.createUser),
