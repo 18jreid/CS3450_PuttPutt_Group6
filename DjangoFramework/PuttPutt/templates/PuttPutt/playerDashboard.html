@@ -25,6 +25,10 @@
         <div class="Left_Option">
             <a class="Text_Link" href="{% url 'addFunds' %}">Add Funds</a>
         </div>    
+        {% if confirmation %}
+            <br>
+            <p>{{confirmation}}</p>
+        {% endif %}
     </div>
 </body>
 </html>

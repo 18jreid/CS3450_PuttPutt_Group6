@@ -20,6 +20,7 @@ urlpatterns = [
     path('managerDashboard', views.managerDashboard, name="managerDashboard"),
     path('manageCurrentTournament', views.manageCurrentTournament, name="manageCurrentTournament"),
     path('manageUsers', views.manageUsers, name="manageUsers"),
+    path('manageDrinks', views.manageDrinks, name="manageDrinks"),
     path('orderDrinks', views.orderDrinks, name="orderDrinks"),
     path('playerDashboard', views.playerDashboard, name="playerDashboard"),
     path('sponsorDashboard', views.sponsorDashboard, name="sponsorDashboard"),
@@ -29,5 +30,8 @@ urlpatterns = [
     path('signInUser', views.signInUser),
     path('upcomingTournaments', views.upcomingTournaments, name="upcomingTournaments"),
     path('testButtonFunction', views.testButtonFunction),
-    path('updateUserType', views.updateUserType, name="updateUserType")
+    path('updateUserType', views.updateUserType, name="updateUserType"),
+    path('updateDrink', views.updateDrink, name="updateDrink"),
+    path('orderDrinkRequest', views.orderDrinkRequest, name="orderDrinkRequest"),
+    path('completeDrinkOrder', views.completeDrinkOrder, name="completeDrinkOrder")
 ]

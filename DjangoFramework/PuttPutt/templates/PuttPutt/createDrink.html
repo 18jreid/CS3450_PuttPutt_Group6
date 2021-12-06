@@ -3,29 +3,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Drink Order</title>
+    <title>Create Drink</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{% static 'PuttPutt/dashboardStyle.css' %}">
 </head>
 <body style="background-color: #e1f5f5;">
-    <div class="Header-Grid-Container">
-        <div>
+    <div id="header">
+        <div id="headerText">
             <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
             <h3 style="text-align: right;">Current Balance: ${{user.profile.account_balance}}</h3>
-            <a class="Text_Link" href="{% url 'logout' %}"> <p style="text-align: right;"> <u>Sign out</u> </p> </a>
+            <p style="text-align: right;"> <a class="Text_Link" href="{% url 'logout' %}"> <u>Sign out</u> </a> </p>
         </div>
     </div>
-    <div class="Header-Grid-Container" style="background-color: #4f698a">
-        <div></div>
-    </div>
+
     <div class="Center-Box-Container" style="text-align: center;">
-        <form action="/createDrink" method="post">
+        <div style="text-align: center;">
+            <p style="text-align: right;"> <a class="Text_Link_Dark" href="{% url 'playerDashboard' %}"> <u>Back To Dashboard</u> </a></p>
+            <div style="border-width: 10px; border-style: ridge; background-color: #4f698a; border-color: #4f698a; margin-left: 15%; margin-right: 15%; margin-top: 2em; padding-top: 1em; padding-bottom: 1em;">
+                {% if error %}
+                    <p>{{errors}}</p>
+                {% endif %}
+
+        <form action="/createDrink" method="POST" style="display: inline;">
             {% csrf_token %}
             <input type="text" id="name" name="name" maxlength="30" placeholder="Drink Name" style="font-size: 20px;"><br><br>
             <input type="text" id="description" name="description" maxlength="300" placeholder="Description" style="font-size: 20px;"><br><br>
             <input type="number" id="cost" name="cost" placeholder="Cost" style="font-size: 20px;"><br><br>
-            <input type="submit" value="Submit" style="font-size: 30px;">
+            <input type="submit" value="Submit" style="font-size: 25px;">
         </form>  
-    </div>
+        <form action="/manageDrinks" style="display: inline;">
+            <input type="submit" value="Back" style="display: inline; margin-top: 1em; margin-left: 1em; font-size: 25px;">
+        </form>
 </body>
 </html>

@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Manage Drinks</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'PuttPutt/dashboardStyle.css' %}">
+</head>
+<body style="background-color: #e1f5f5;">
+    <div id="header">
+        <div id="headerText">
+            <h3 style="text-align: right;">Welcome, {{user.first_name}}</h3>
+            <h3 style="text-align: right;">Current Balance: ${{user.profile.account_balance}}</h3>
+            <p style="text-align: right;"> <a class="Text_Link" href="{% url 'logout' %}"> <u>Sign out</u> </a> </p>
+        </div>
+    </div>
+
+    <div class="Center-Box-Container" style="text-align: center;">
+        <div style="text-align: center;">
+            <p style="text-align: right;"> <a class="Text_Link_Dark" href="{% url 'playerDashboard' %}"> <u>Back To Dashboard</u> </a></p>
+            <div style="border-width: 10px; border-style: ridge; background-color: #4f698a; border-color: #4f698a; margin-left: 15%; margin-right: 15%; margin-top: 2em; padding-top: 1em; padding-bottom: 1em;">
+                {% if errors %}
+                    <p>{{errors}}</p>
+                {% endif %}
+            <form action="/updateDrink" method="POST">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <th style="border: none;">
+                            <label style="color: white; font-size: 25px;">Drinks:</label>
+                        </th>
+                        <th style="border: none;">
+                            <select name="drinkChoice" id="drinkChoice" name="drinkChoice" style="font-size: 20px; margin-top: .5em;">
+                                {% for d in drinks %}
+                                    <option value="{{d}}">{{d.name}}</option>
+                                {% endfor %}
+                            </select><br>
+                        </th>
+                    </tr>
+                </table>
+                <button style="margin-top: 1em; font-size: 25px;">Delete Selected</button>
+            </form>
+
+						<form action="/createDrinkPage" style="display: inline;">
+								<input type="submit" value="Create Drink" style="display: inline; margin-top: 1em; font-size: 25px;">
+						</form>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

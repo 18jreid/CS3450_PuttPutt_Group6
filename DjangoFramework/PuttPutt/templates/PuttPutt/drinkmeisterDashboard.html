@@ -17,15 +17,45 @@
     </div>
     <div class="Center-Box-Container-Scrollable">
         <h1 style="text-align: center;">Drink Orders Pending</h1>
-        <div class="Mid_Option">
-            <p>Drink orders will appear here</p>
-        </div>
-        <div class="Mid_Option">
-            <p>They will be clickable in order to complete the orders</p>
-        </div>
-        <div class="Mid_Option">
-            <p>The center box container should also be able to change height based on the number of orders there are.</p>
-        </div>
+            {% for d in drinkOrders %}
+                <form action="/completeDrinkOrder" method="POST">
+              <div class="Mid_Option">
+                    {% csrf_token %}
+                <table>
+                    <input type="hidden" id="drinkOrder" name="drinkOrder" value="{{d}}">
+                    <th style="border: none;">
+                    <label for="user_id" style="color: white; font-size: 15px; display: inline;">Customer Name:</label>
+                    </th>
+                    <th style="border: none;">
+                    <p id="user_id" name="user_id" style="display: inline;">{{ d.user_id }}</p> 
+                    </th>
+                    <tr></tr>
+                    <th style="border: none;">
+                    <label for="drink" style="color: white; font-size: 15px; display: inline;">Drink:</label>
+                    </th>
+                    <th style="border: none;">
+                    <p id="drink" name="drink" style="display: inline;">{{ d.drink }}</p> 
+                    </th>
+                    <tr></tr>
+                    <th style="border: none;">
+                    <label for="hole_number" style="color: white; font-size: 15px; display: inline;">Hole Number:</label>
+                    </th>
+                    <th style="border: none;">
+                    <p id="hole_number" name="hole_number" style="display: inline;">{{ d.hole_number }}</p> 
+                    </th>
+                    <tr></tr>
+                    <th style="border: none;">
+                    <label for="time_created" style="color: white; font-size: 15px; display: inline;">Ordered at:</label>
+                    </th>
+                    <th style="border: none;">
+                    <p id="time_created" name="time_created" style="display: inline;">{{ d.time_created }}</p> 
+                    </th>
+                    <tr></tr>
+                    <input class="Login-Button" style="font-size: 25px; display: inline;" type="submit" value="Complete Order">
+                </table>
+                </form>
+              </div>
+            {% endfor %}
     </div>
 </body>
 </html>
